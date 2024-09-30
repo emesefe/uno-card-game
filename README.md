@@ -21,17 +21,17 @@
 
 ## Lógica
 
-SKIP -> Saltar turno
-INVERT -> Cambiar sentido de turnos
-PLUS2 -> Robar carta y saltar turno
-PLUS4 -> Cambiar de color, robar carta y saltar turno
-CHANGE_COLOR -> Cambiar de color
+- SKIP -> Saltar turno
+- INVERT -> Cambiar sentido de turnos
+- PLUS2 -> Robar carta y saltar turno
+- PLUS4 -> Cambiar de color, robar carta y saltar turno
+- CHANGE_COLOR -> Cambiar de color
 
 ## Scriptable Object (SOCard)
 
-Type
-Digit
-Sprite
+- Type
+- Digit
+- Sprite
 
 ## Visual
 
