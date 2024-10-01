@@ -50,7 +50,7 @@
 - [ ] El sentido de los turnos será un bool
 
 - [ ] El mazo de descarte será una list
-- [ ] El mazo de robo será una list
+- [x] El mazo de robo será una list
 
 - [ ] La mano del jugador será una list
 
