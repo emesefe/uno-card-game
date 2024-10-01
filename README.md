@@ -10,7 +10,7 @@
 # Cartas
 
 - [ ] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)
-- [ ] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR
+- [x] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR
 - [ ] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)
 - [ ] Hay un total de 8 cartas SKIP (2 por cada color)
 - [ ] Hay un total de 8 cartas INVERT (2 por cada color)
@@ -35,9 +35,9 @@
 
 ## Visual
 
-- [ ] Color
-- [ ] Background de la carta con un color
-- [ ] Sprite (del SO Card)
+- [x] Color
+- [x] Background de la carta con un color
+- [x] Sprite (del SO Card)
 
 
 # Estructura del juego 

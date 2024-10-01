@@ -183,12 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8a398bf27e941b499be23af0d53fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
-  color: {r: 1, g: 0, b: 0, a: 1}
   cardSpriteRenderer: {fileID: 147001109445416624}
   symbolSpriteRenderer: {fileID: 2777863790662173142}
   backCard: {fileID: 6580853568191177309}
-  _isFaceDown: 0
+  backSpriteRenderer: {fileID: 4479553217908321081}
 --- !u!1 &6580853568191177309
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-   [SerializeField] private SOCard soCard;
-   [SerializeField] private Color color;
+   private SOCard _soCard;
+   private Color _color;
 
    [SerializeField] private SpriteRenderer cardSpriteRenderer;
    [SerializeField] private SpriteRenderer symbolSpriteRenderer;
 
    [SerializeField] private GameObject backCard;
+   [SerializeField] private SpriteRenderer backSpriteRenderer;
 
-   [SerializeField] private bool _isFaceDown;
+   private bool _isFaceDown;
 
-   private void Start()
-   {    
-        IsFaceDown(false);
-        SetupCardVisuals();
+   public void SetupOrderInLayer(int idx)
+   {
+        cardSpriteRenderer.sortingOrder = 3 * idx;
+        symbolSpriteRenderer.sortingOrder = 3 * idx + 1;
+        backSpriteRenderer.sortingOrder = 3 * idx + 2; 
    }
 
-   private void SetupCardVisuals()
+   public void SetupCardVisuals(SOCard soCard, Color color)
    {
+        _soCard = soCard;
+        _color = color;
+
         if (soCard.type == CardType.Plus4 
             || soCard.type == CardType.ChangeColor)
         {
@@ -35,7 +40,7 @@ public class Card : MonoBehaviour
         symbolSpriteRenderer.sprite = soCard.sprite;
    }
 
-   private void IsFaceDown(bool isFaceDown)
+   public void IsFaceDown(bool isFaceDown)
    {
         _isFaceDown = isFaceDown;
         backCard.SetActive(isFaceDown);
