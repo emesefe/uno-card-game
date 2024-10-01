@@ -9,7 +9,7 @@
 
 # Cartas
 
-- [ ] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)
+- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)
 - [x] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR
 - [ ] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)
 - [ ] Hay un total de 8 cartas SKIP (2 por cada color)
