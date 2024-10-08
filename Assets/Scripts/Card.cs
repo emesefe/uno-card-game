@@ -27,16 +27,6 @@ public class Card : MonoBehaviour
         _soCard = soCard;
         _color = color;
 
-        if (soCard.type == CardType.Plus4 
-            || soCard.type == CardType.ChangeColor)
-        {
-            cardSpriteRenderer.color = Color.black;
-        }
-        else
-        {
-            cardSpriteRenderer.color = color;
-        }
-
         symbolSpriteRenderer.sprite = soCard.sprite;
    }
 

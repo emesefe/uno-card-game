@@ -1,26 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CardsManager : MonoBehaviour
 {
     [SerializeField] private SOCard[] soCards;
     [SerializeField] private GameObject cardPrefab;
 
+    public enum CardColor 
+    {
+        Red,
+        Green,
+        Blue,
+        Yellow,
+        Black
+    }
+
     private Dictionary<string, Color> cardColors = new Dictionary<string, Color>() 
     {
         {"Red", Color.red},
         {"Green", Color.green},
         {"Blue", Color.blue},
-        {"Yellow", Color.yellow}
+        {"Yellow", Color.yellow},
+        {"Black", Color.black}
     };
 
     [SerializeField] private List<Card> drawDeck;
 
     private void Start()
     {
-        CreateCard(soCards[13], Color.black, 0);
-        CreateCard(soCards[9], cardColors["Green"], 1);
+        CreateDrawDeck();
+        ShuffleDeck(drawDeck);
     }
 
     private void CreateCard(SOCard soCard, Color color, int idx)
@@ -31,6 +43,47 @@ public class CardsManager : MonoBehaviour
         card.SetupOrderInLayer(idx);
 
         drawDeck.Add(card);
+    }
+
+    private void CreateDrawDeck()
+    {
+        int layer = 0;
+        int totalCards = 8;
+        foreach (SOCard soCard in soCards)
+        {
+            if (soCard.type == CardType.Plus4 || soCard.type == CardType.ChangeColor)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    CreateCard(soCard, cardColors[CardColor.Black.ToString()], layer);
+                    layer++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    CardColor color = (CardColor)(i % 4);
+                    CreateCard(soCard, cardColors[color.ToString()], layer);
+                    layer++;
+                }
+            }   
+        }   
+    }
+
+    private void ShuffleDeck(List<Card> deck)
+    {
+        Card auxCard = null;
+        for (int i = 0; i < deck.Count; i++)
+        {
+            int randomIdx = Random.Range(i, deck.Count);
+            auxCard = deck[i];
+            deck[i] = deck[randomIdx];
+            deck[randomIdx] = auxCard;
+
+            deck[i].SetupOrderInLayer(i);
+            deck[randomIdx].SetupOrderInLayer(randomIdx);
+        }
     }
 
 }
