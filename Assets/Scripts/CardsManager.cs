@@ -51,7 +51,7 @@ public class CardsManager : MonoBehaviour
     private void CreateDrawDeck()
     {
         int layer = 0;
-        int totalCards = 8;
+        
         foreach (SOCard soCard in soCards)
         {
             Card newCard = null;
