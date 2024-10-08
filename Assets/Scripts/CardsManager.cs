@@ -33,9 +33,20 @@ public class CardsManager : MonoBehaviour
     {
         CreateDrawDeck();
         ShuffleDeck(drawDeck);
+        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
+        DrawCardFromDrawDeck();
+        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
+        DrawCardFromDrawDeck();
+        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
+        DrawCardFromDrawDeck();
+        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
+        DrawCardFromDrawDeck();
+        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
+        DrawCardFromDrawDeck();
+
     }
 
-    private void CreateCard(SOCard soCard, Color color, int idx)
+    private Card CreateCard(SOCard soCard, Color color, int idx)
     {
         GameObject newCard = Instantiate(cardPrefab);
         Card card = newCard.GetComponent<Card>();
@@ -43,6 +54,8 @@ public class CardsManager : MonoBehaviour
         card.SetupOrderInLayer(idx);
 
         drawDeck.Add(card);
+
+        return card;
     }
 
     private void CreateDrawDeck()
@@ -51,11 +64,13 @@ public class CardsManager : MonoBehaviour
         int totalCards = 8;
         foreach (SOCard soCard in soCards)
         {
+            Card newCard = null;
             if (soCard.type == CardType.Plus4 || soCard.type == CardType.ChangeColor)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    CreateCard(soCard, cardColors[CardColor.Black.ToString()], layer);
+                    newCard = CreateCard(soCard, cardColors[CardColor.Black.ToString()], layer);
+                    newCard.IsFaceDown(true);   
                     layer++;
                 }
             }
@@ -64,10 +79,11 @@ public class CardsManager : MonoBehaviour
                 for (int i = 0; i < 8; i++)
                 {
                     CardColor color = (CardColor)(i % 4);
-                    CreateCard(soCard, cardColors[color.ToString()], layer);
+                    newCard = CreateCard(soCard, cardColors[color.ToString()], layer);
+                    newCard.IsFaceDown(true);   
                     layer++;
                 }
-            }   
+            }
         }   
     }
 
@@ -86,4 +102,13 @@ public class CardsManager : MonoBehaviour
         }
     }
 
+    public Card DrawCardFromDrawDeck()
+    {
+        Card drewCard = drawDeck[drawDeck.Count - 1];
+        drawDeck.Remove(drewCard);
+
+        Debug.Log($"he robado: {drewCard.GetCardType()}");
+
+        return drewCard;
+    }
 }

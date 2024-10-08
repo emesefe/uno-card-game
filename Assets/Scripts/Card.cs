@@ -35,4 +35,9 @@ public class Card : MonoBehaviour
         _isFaceDown = isFaceDown;
         backCard.SetActive(isFaceDown);
    }
+
+   public CardType GetCardType()
+   {
+        return _soCard.type;
+   }
 }
