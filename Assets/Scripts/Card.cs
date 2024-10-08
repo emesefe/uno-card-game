@@ -40,4 +40,14 @@ public class Card : MonoBehaviour
    {
         return _soCard.type;
    }
+
+   public int GetCardDigit()
+   {
+        return _soCard.digit;
+   }
+
+   public Color GetColor()
+   {
+        return _color;
+   }
 }

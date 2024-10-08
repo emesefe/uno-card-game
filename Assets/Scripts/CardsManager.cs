@@ -33,17 +33,7 @@ public class CardsManager : MonoBehaviour
     {
         CreateDrawDeck();
         ShuffleDeck(drawDeck);
-        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
         DrawCardFromDrawDeck();
-        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
-        DrawCardFromDrawDeck();
-        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
-        DrawCardFromDrawDeck();
-        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
-        DrawCardFromDrawDeck();
-        Debug.Log($"la última carta es: {drawDeck[drawDeck.Count - 1].GetCardType()}");
-        DrawCardFromDrawDeck();
-
     }
 
     private Card CreateCard(SOCard soCard, Color color, int idx)
@@ -107,7 +97,7 @@ public class CardsManager : MonoBehaviour
         Card drewCard = drawDeck[drawDeck.Count - 1];
         drawDeck.Remove(drewCard);
 
-        Debug.Log($"he robado: {drewCard.GetCardType()}");
+        Debug.Log($"he robado: {drewCard.GetCardType()} - {drewCard.GetCardDigit()} de color {drewCard.GetColor()}");
 
         return drewCard;
     }
