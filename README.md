@@ -11,34 +11,33 @@
 
 - [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)
 - [x] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR
-- [ ] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)
-- [ ] Hay un total de 8 cartas SKIP (2 por cada color)
-- [ ] Hay un total de 8 cartas INVERT (2 por cada color)
-- [ ] Hay un total de 8 cartas PLUS2 (2 por cada color)
-- [ ] Hay un total de 4 cartas PLUS4
-- [ ] Hay un total de 4 cartas CHANGE_COLOR
-- [ ] Hay un total de 112 cartas
+- [x] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)
+- [x] Hay un total de 8 cartas SKIP (2 por cada color)
+- [x] Hay un total de 8 cartas INVERT (2 por cada color)
+- [x] Hay un total de 8 cartas PLUS2 (2 por cada color)
+- [x] Hay un total de 4 cartas PLUS4
+- [x] Hay un total de 4 cartas CHANGE_COLOR
+- [x] Hay un total de 112 cartas
 
-## Lógica
+### Scriptable Object (SOCard)
+
+- Type
+- Digit
+- Sprite
+
+### Visual
+
+- [x] Color
+- [x] Background de la carta con un color
+- [x] Sprite (del SO Card)
+
+### Lógica
 
 - SKIP -> Saltar turno
 - INVERT -> Cambiar sentido de turnos
 - PLUS2 -> Robar carta y saltar turno
 - PLUS4 -> Cambiar de color, robar carta y saltar turno
 - CHANGE_COLOR -> Cambiar de color
-
-## Scriptable Object (SOCard)
-
-- Type
-- Digit
-- Sprite
-
-## Visual
-
-- [x] Color
-- [x] Background de la carta con un color
-- [x] Sprite (del SO Card)
-
 
 # Estructura del juego 
 
@@ -95,8 +94,6 @@
 - [ ] Mostrar el temporizador del juego
 - [ ] Mostrar icono del resto de jugadores con username y el total de cartas que tienen en su manos
 
-
-
 # Acciones del juego
 
 - [ ] Validar username
@@ -115,10 +112,10 @@
 - [ ] El turno de un jugador finaliza cuando ha hecho una jugada, ha robado o se ha acabado el turno
 - [ ] Si se acaba el turno, roba automáticamente 2 cartas y pierde el turno
 
-- [ ] Añadir carta a mazo de robo
-- [ ] Generar el mazo de robo
-- [ ] Mezclar cartas
-- [ ] Robar una carta consiste en coger la última carta del mazo de robo y devolver dicha carta
+- [x] Añadir carta a mazo de robo
+- [x] Generar el mazo de robo
+- [x] Mezclar cartas
+- [x] Robar una carta consiste en coger la última carta del mazo de robo y devolver dicha carta
 - [ ] Añadir carta a mazo de descarte
 - [ ] Convertir mazo de descarte a mazo de robo. Se cambian todas las cartas de mazo salvo la última del mazo de descarte (la última jugada)
 
