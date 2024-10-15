@@ -41,7 +41,7 @@
 
 # Estructura del juego 
 
-- [ ] Los jugadores se guardarán en un array
+- [x] Los jugadores se guardarán en un array
 - [ ] Mínimo de 2 jugadores
 - [ ] Máximo de 10 jugadores
 
@@ -51,7 +51,7 @@
 - [ ] El mazo de descarte será una list
 - [x] El mazo de robo será una list
 
-- [ ] La mano del jugador será una list
+- [x] La mano del jugador será una list
 
 ## Escenas
 
@@ -119,9 +119,9 @@
 - [ ] Añadir carta a mazo de descarte
 - [ ] Convertir mazo de descarte a mazo de robo. Se cambian todas las cartas de mazo salvo la última del mazo de descarte (la última jugada)
 
-- [ ] Iniciar mano del jugador. Los jugadores empiezan con 7 cartas
-- [ ] Añadir carta a la mano del jugador
-- [ ] Eliminar carta de la mano del jugador
+- [x] Iniciar mano del jugador. Los jugadores empiezan con 7 cartas
+- [x] Añadir carta a la mano del jugador
+- [x] Eliminar carta de la mano del jugador
 
 - [ ] Jugar una carta. En tu turno puedes jugar una o varias cartas (si son exactamente iguales en símbolo y color)
 - [ ] Si el jugador es IA, utilizar corrutinas para que la jugada no sea immediata
