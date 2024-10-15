@@ -28,6 +28,7 @@ public class Card : MonoBehaviour
         _color = color;
 
         symbolSpriteRenderer.sprite = soCard.sprite;
+        cardSpriteRenderer.color = color;
    }
 
    public void IsFaceDown(bool isFaceDown)

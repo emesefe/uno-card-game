@@ -6,8 +6,12 @@ using Random = UnityEngine.Random;
 
 public class CardsManager : MonoBehaviour
 {
+    public static CardsManager Instance;
+
     [SerializeField] private SOCard[] soCards;
     [SerializeField] private GameObject cardPrefab;
+
+    [SerializeField] private Transform drawDeckTransform;
 
     public enum CardColor 
     {
@@ -29,16 +33,21 @@ public class CardsManager : MonoBehaviour
 
     [SerializeField] private List<Card> drawDeck;
 
-    private void Start()
+    private void Awake()
     {
-        CreateDrawDeck();
-        ShuffleDeck(drawDeck);
-        DrawCardFromDrawDeck();
+        if (Instance != null)
+        {
+            Debug.LogError("There's more than one instance");
+        }
+
+        Instance = this;
     }
 
     private Card CreateCard(SOCard soCard, Color color, int idx)
     {
         GameObject newCard = Instantiate(cardPrefab);
+        newCard.transform.SetParent(drawDeckTransform);
+
         Card card = newCard.GetComponent<Card>();
         card.SetupCardVisuals(soCard, color);
         card.SetupOrderInLayer(idx);
@@ -48,7 +57,7 @@ public class CardsManager : MonoBehaviour
         return card;
     }
 
-    private void CreateDrawDeck()
+    public void CreateDrawDeck()
     {
         int layer = 0;
         
@@ -77,23 +86,24 @@ public class CardsManager : MonoBehaviour
         }   
     }
 
-    private void ShuffleDeck(List<Card> deck)
+    public void ShuffleDeck()
     {
         Card auxCard = null;
-        for (int i = 0; i < deck.Count; i++)
+        for (int i = 0; i < drawDeck.Count; i++)
         {
-            int randomIdx = Random.Range(i, deck.Count);
-            auxCard = deck[i];
-            deck[i] = deck[randomIdx];
-            deck[randomIdx] = auxCard;
+            int randomIdx = Random.Range(i, drawDeck.Count);
+            auxCard = drawDeck[i];
+            drawDeck[i] = drawDeck[randomIdx];
+            drawDeck[randomIdx] = auxCard;
 
-            deck[i].SetupOrderInLayer(i);
-            deck[randomIdx].SetupOrderInLayer(randomIdx);
+            drawDeck[i].SetupOrderInLayer(i);
+            drawDeck[randomIdx].SetupOrderInLayer(randomIdx);
         }
     }
 
     public Card DrawCardFromDrawDeck()
     {
+        Debug.Log(drawDeck.Count);
         Card drewCard = drawDeck[drawDeck.Count - 1];
         drawDeck.Remove(drewCard);
 
