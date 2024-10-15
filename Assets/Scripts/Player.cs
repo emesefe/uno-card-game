@@ -59,9 +59,13 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < hand.Count; i++)
         {
-            hand[i].gameObject.transform.localPosition = new Vector3(
+            Transform cardTransform = hand[i].gameObject.transform;
+            cardTransform.localPosition = new Vector3(
             initialX - i * distanceBetweenCenters, 0, 0);
+            
             // TODO: Modificar escala de las cartas en función de visualCardWidth
+            float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
+            cardTransform.localScale = new Vector3(visualCardWidth, prop * cardTransform.localScale.y, cardTransform.localScale.z);
         }
     }
 }
