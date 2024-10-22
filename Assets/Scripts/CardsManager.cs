@@ -12,6 +12,7 @@ public class CardsManager : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;
 
     [SerializeField] private Transform drawDeckTransform;
+    [SerializeField] private Transform discardDeckTransform;
 
     public enum CardColor 
     {
@@ -32,6 +33,7 @@ public class CardsManager : MonoBehaviour
     };
 
     [SerializeField] private List<Card> drawDeck;
+    [SerializeField] private List<Card> discardDeck;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class CardsManager : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardPrefab);
         newCard.transform.SetParent(drawDeckTransform);
+        newCard.transform.localPosition = Vector3.zero;
 
         Card card = newCard.GetComponent<Card>();
         card.SetupCardVisuals(soCard, color);
@@ -110,5 +113,22 @@ public class CardsManager : MonoBehaviour
         Debug.Log($"he robado: {drewCard.GetCardType()} - {drewCard.GetCardDigit()} de color {drewCard.GetColor()}");
 
         return drewCard;
+    }
+
+    public void AddCardToDiscardDeck(Card card)
+    {
+        discardDeck.Add(card);
+
+        card.gameObject.transform.SetParent(discardDeckTransform);
+        card.gameObject.transform.localPosition = Vector3.zero;
+
+        card.IsFaceDown(false);
+
+        Debug.Log($"Al mazo de descarte hemos añadido: {card.GetCardType()} - {card.GetCardDigit()} de color {card.GetColor()}");
+    }
+
+    public Card GetLastPlayedCard()
+    {
+        return discardDeck[discardDeck.Count - 1];
     }
 }

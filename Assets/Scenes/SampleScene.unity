@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 902220285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 17, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -496,7 +496,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7c654e22db604b5abd823664b0726da, type: 2}
   cardPrefab: {fileID: 5526537043609179630, guid: 0f4975ca32f3e4e55abc115735ac258b, type: 3}
   drawDeckTransform: {fileID: 902220286}
+  discardDeckTransform: {fileID: 1639497826}
   drawDeck: []
+  discardDeck: []
 --- !u!4 &1424478001
 Transform:
   m_ObjectHideFlags: 0

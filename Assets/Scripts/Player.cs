@@ -6,8 +6,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private List<Card> hand = new List<Card>();
 
-    private CardsManager cardsManager;
-
     private int totalInitialCards = 7;
 
     [SerializeField] private Transform handTransform;
@@ -63,9 +61,48 @@ public class Player : MonoBehaviour
             cardTransform.localPosition = new Vector3(
             initialX - i * distanceBetweenCenters, 0, 0);
             
-            // TODO: Modificar escala de las cartas en función de visualCardWidth
             float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
             cardTransform.localScale = new Vector3(visualCardWidth, prop * cardTransform.localScale.y, cardTransform.localScale.z);
         }
+    }
+
+    public bool CanPlayCard(Card cardToPlay)
+    {
+        Card lastPlayedCard = CardsManager.Instance.GetLastPlayedCard();
+
+        // TODO: ¿Qué pasa cuando me han tirado un +2? No puedo tirar ni un +4 ni un comodín
+        // TODO: Faltan casos especiales que dependen de las cartas especiales
+        if (cardToPlay.GetCardType() == CardType.Plus4 
+        || cardToPlay.GetCardType() == CardType.ChangeColor)
+        {
+            return true;
+        }
+        
+        if (cardToPlay.GetColor() == lastPlayedCard.GetColor()) 
+        {
+            return true;
+        }
+
+        if (cardToPlay.GetCardType() == lastPlayedCard.GetCardType())
+        {        
+            if (cardToPlay.GetCardType() != CardType.Number) 
+            {
+                return true;
+            }
+            else 
+            {
+                if (cardToPlay.GetCardDigit() == lastPlayedCard.GetCardDigit())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public List<Card> GetPlayerHandCards()
+    {
+        return hand;
     }
 }
