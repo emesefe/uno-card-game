@@ -48,7 +48,7 @@
 - [ ] El turno será un enum
 - [ ] El sentido de los turnos será un bool
 
-- [ ] El mazo de descarte será una list
+- [x] El mazo de descarte será una list
 - [x] El mazo de robo será una list
 
 - [x] La mano del jugador será una list
@@ -81,11 +81,11 @@
 - [ ] Panel Game Over con 2 botones (volver a jugar o volver a Main Menu). Mostrar total de rondas ganadas en la misma sesión.
 - [ ] Panel de selector de color (4 opciones de color y opción random)
 - [ ] Mostrar de qué jugador es el turno haciendo que el icono del jugador esté destacado (más grande, brillo, indicador sobre el icono)
-- [ ] Mostrar la mano del jugador
+- [x] Mostrar la mano del jugador
 - [ ] Si no es el turno del jugador, las cartas se ven más pequeñas e incluso más oscuras
-- [ ] Ajustar las cartas de la mano del jugador al espacio disponible y en función de la cantidad
+- [x] Ajustar las cartas de la mano del jugador al espacio disponible y en función de la cantidad
 - [ ] Botón de confirmar jugada
-- [ ] Mostrar el mazo de robo
+- [x] Mostrar el mazo de robo
 - [ ] Botón de robar carta
 - [ ] Mostrar el mazo de descarte con un mínimo de 4 cartas
 - [ ] Mostrar el sentido del juego (horario o antihorario)
@@ -116,19 +116,19 @@
 - [x] Generar el mazo de robo
 - [x] Mezclar cartas
 - [x] Robar una carta consiste en coger la última carta del mazo de robo y devolver dicha carta
-- [ ] Añadir carta a mazo de descarte
+- [x] Añadir carta a mazo de descarte
 - [ ] Convertir mazo de descarte a mazo de robo. Se cambian todas las cartas de mazo salvo la última del mazo de descarte (la última jugada)
 
 - [x] Iniciar mano del jugador. Los jugadores empiezan con 7 cartas
 - [x] Añadir carta a la mano del jugador
 - [x] Eliminar carta de la mano del jugador
 
-- [ ] Jugar una carta. En tu turno puedes jugar una o varias cartas (si son exactamente iguales en símbolo y color)
+- [x] Jugar una carta. En tu turno puedes jugar una o varias cartas (si son exactamente iguales en símbolo y color)
 - [ ] Si el jugador es IA, utilizar corrutinas para que la jugada no sea immediata
-- [ ] El jugador selecciona la carta o cartas a tirar con click izquierdo
-- [ ] Validar si una carta se puede jugar. Se puede jugar una carta por símbolo (número o carta especial) o color
-- [ ] Seleccionar una carta de la mano del jugador
-- [ ] Si una carta está seleccionada y se le da un nuevo click izquierdo, vuelve a su estado original
+- [x] El jugador selecciona la carta o cartas a tirar con click izquierdo
+- [x] Validar si una carta se puede jugar. Se puede jugar una carta por símbolo (número o carta especial) o color
+- [x] Seleccionar una carta de la mano del jugador
+- [x] Si una carta está seleccionada y se le da un nuevo click izquierdo, vuelve a su estado original
 - [ ] Si la carta seleccionada para la jugada es una carta válida, se agranda en la mano para mostrar visualmente que se puede jugar y está seleccionada para ser jugada
 - [ ] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su estado original y suena un SFX
 
