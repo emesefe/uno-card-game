@@ -51,13 +51,14 @@ public class Player : MonoBehaviour
         for (int i = 0; i < totalInitialCards; i++)
         {
             Card drewCard =  CardsManager.Instance.DrawCardFromDrawDeck();
-            
-            drewCard.gameObject.transform.SetParent(handTransform);
-            drewCard.gameObject.transform.localPosition = Vector3.zero;
+            Transform cardTransform = drewCard.transform;
+
+            cardTransform.SetParent(handTransform);
+            cardTransform.localPosition = Vector3.zero;
             
             float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
-            Transform cardTransform = drewCard.transform;
-            cardTransform.localScale = new Vector3(visualCardWidth, prop * cardTransform.localScale.y, cardTransform.localScale.z);
+            cardTransform.localScale = new Vector3(
+                visualCardWidth, prop * cardTransform.localScale.y, 1);
 
             drewCard.IsFaceDown(false);
 
@@ -67,29 +68,47 @@ public class Player : MonoBehaviour
         ArrangePlayerHandCards();
     }
 
-    private void ArrangePlayerHandCards()
+    /// <summary>
+    /// This function returns the total distance of the player's hand and the distance between the centers of the cards
+    /// </summary>
+    /// <returns>
+    /// A tuple where the first item is totalDistance and the second item is distanceBetweenCenters
+    /// </returns>
+    private (float, float) GetDistances()
     {
         float totalDistance = handHorizontalLimits[1] - handHorizontalLimits[0];
-
         float freeSpace = totalDistance - (visualCardWidth * hand.Count);
 
         float distanceBetweenCards = freeSpace / (hand.Count - 1);
-        
         float distanceBetweenCenters = distanceBetweenCards + visualCardWidth;
-        
-        distanceBetweenCenters = distanceBetweenCenters > maxDistanceBetweenCenters 
-        ? maxDistanceBetweenCenters
-        : distanceBetweenCenters;
 
-        float initialX = hand.Count % 2 == 0 ?  distanceBetweenCenters / 2 : 0;
+        if (distanceBetweenCenters > maxDistanceBetweenCenters)
+        {
+            distanceBetweenCenters = maxDistanceBetweenCenters;
+            totalDistance = distanceBetweenCenters * (hand.Count - 1) + visualCardWidth;
+        }
 
+        return (totalDistance, distanceBetweenCenters);
+    }
+
+    private void ArrangePlayerHandCards()
+    {
+        (float totalDistance, float distanceBetweenCenters) = GetDistances();
+
+        float initialX = -(totalDistance / 2) + visualCardWidth / 2;
         for (int i = 0; i < hand.Count; i++)
         {
             Card card = hand[i];
+            
             Transform cardTransform = card.gameObject.transform;
             cardTransform.localPosition = new Vector3(
-                initialX + Mathf.Pow(-1, i) * (i / 2 + i % 2) * distanceBetweenCenters, 0, 0);
-            card.GetComponent<SelectableCard>().SetOriginalPosition(cardTransform.localPosition);
+                initialX + distanceBetweenCenters * i, 0, 0);
+
+            card.SetupOrderInLayer(i);
+
+            SelectableCard selectableCard = card.GetComponent<SelectableCard>();
+            selectableCard.SetOriginalPosition(cardTransform.position);
+            selectableCard.SetOriginalIndex(i);
         }
     }
 

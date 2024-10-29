@@ -7,18 +7,20 @@ public class SelectableCard : MonoBehaviour
     private Player player;
     private Card card;
     private Vector3 originalPosition;
+    private int originalIndex;
 
     private bool seletectedCard;
 
-    private void Start()
+    private float distanceToGoUp = 2.5f;
+
+    public void SetOriginalPosition(Vector3 position)
     {
-        originalPosition = transform.position;
+        originalPosition = position;
     }
 
-    public void SetOriginalPosition(Vector3 originalPosition)
+    public void SetOriginalIndex(int index)
     {
-        this.originalPosition = originalPosition;
-        Debug.Log(originalPosition);
+        originalIndex = index;
     }
 
     public void SetPlayer(Player player)
@@ -37,10 +39,7 @@ public class SelectableCard : MonoBehaviour
         {
             if (player.GetTotalSelectedCards() <= 0 || CardsManager.AreTwoCardsEqual(card, player.GetSelectedCard()))
             {
-                Debug.Log($"Mi carta selecccionada es {card.GetCardType()}-{card.GetCardDigit()}-{card.GetColor()}");
-                
                 seletectedCard = true;
-
                 player.AddSelectedCard(card);
             }
         } 
@@ -48,24 +47,22 @@ public class SelectableCard : MonoBehaviour
         else if (seletectedCard)
         {
             seletectedCard = false;
-
             player.RemoveSelectedCard(card);
         }
     }
 
     private void OnMouseEnter()
     {
-        //transform.DOLocalMove(originalPosition + 2 * Vector3.up, 0.25f);
-        transform.DOMove(originalPosition + 2 * Vector3.up, 0.25f);
-        //TODO: Hacer que la carta se ponga por delante
+        transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, 0.25f);
+        card.SetupOrderInLayer(player.GetPlayerHandCards().Count);
     }
 
     private void OnMouseExit()
     {
         if (!seletectedCard)
         {
-            //transform.DOLocalMove(originalPosition + 2 * Vector3.up, 0.25f);
             transform.DOMove(originalPosition, 0.25f);
+            card.SetupOrderInLayer(originalIndex);
         }
     }
 }

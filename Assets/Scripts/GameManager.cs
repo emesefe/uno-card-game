@@ -28,9 +28,6 @@ public class GameManager : MonoBehaviour
 
         players[0].InitializePlayerHand();
         cardsManager.AddCardToDiscardDeck(cardsManager.DrawCardFromDrawDeck());
-
-
-        //Debug.Log(players[0].CanPlayCard(players[0].GetPlayerHandCards()[0]));
     }
 
     public CardsManager GetCardsManager()

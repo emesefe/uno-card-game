@@ -107,8 +107,6 @@ public class CardsManager : MonoBehaviour
         Card drewCard = drawDeck[drawDeck.Count - 1];
         drawDeck.Remove(drewCard);
 
-        Debug.Log($"He robado: {drewCard.GetCardType()} - {drewCard.GetCardDigit()} de color {drewCard.GetColor()}");
-
         return drewCard;
     }
 
@@ -123,8 +121,6 @@ public class CardsManager : MonoBehaviour
         card.SetupOrderInLayer(discardDeck.Count - 1);
 
         card.IsFaceDown(false);
-
-        Debug.Log($"Al mazo de descarte hemos añadido: {card.GetCardType()} - {card.GetCardDigit()} de color {card.GetColor()}");
     }
 
     public Card GetLastPlayedCard()
