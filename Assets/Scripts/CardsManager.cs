@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -106,11 +104,10 @@ public class CardsManager : MonoBehaviour
 
     public Card DrawCardFromDrawDeck()
     {
-        Debug.Log(drawDeck.Count);
         Card drewCard = drawDeck[drawDeck.Count - 1];
         drawDeck.Remove(drewCard);
 
-        Debug.Log($"he robado: {drewCard.GetCardType()} - {drewCard.GetCardDigit()} de color {drewCard.GetColor()}");
+        Debug.Log($"He robado: {drewCard.GetCardType()} - {drewCard.GetCardDigit()} de color {drewCard.GetColor()}");
 
         return drewCard;
     }
@@ -121,6 +118,9 @@ public class CardsManager : MonoBehaviour
 
         card.gameObject.transform.SetParent(discardDeckTransform);
         card.gameObject.transform.localPosition = Vector3.zero;
+        card.gameObject.transform.localScale = new Vector3(Constants.CARD_WIDTH, Constants.CARD_HEIGHT, 1);
+
+        card.SetupOrderInLayer(discardDeck.Count - 1);
 
         card.IsFaceDown(false);
 
@@ -131,4 +131,17 @@ public class CardsManager : MonoBehaviour
     {
         return discardDeck[discardDeck.Count - 1];
     }
+
+    public static bool AreTwoCardsEqual(Card card1, Card card2)
+    {
+        if (card1.GetColor() != card2.GetColor()) return false;
+
+        if (card1.GetCardType() != card2.GetCardType()) return false;
+       
+        if (card1.GetCardType() != CardType.Number) return true;
+
+        if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
+
+        return true;
+    }    
 }

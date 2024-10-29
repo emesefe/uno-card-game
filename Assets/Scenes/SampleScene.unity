@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
+  totalInitialCards: 16
   handTransform: {fileID: 1287111289}
   handHorizontalLimits:
   - -20
