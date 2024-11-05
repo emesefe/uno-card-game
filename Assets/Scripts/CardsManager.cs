@@ -51,6 +51,7 @@ public class CardsManager : MonoBehaviour
 
         Card card = newCard.GetComponent<Card>();
         card.SetupCardVisuals(soCard, color);
+        card.SetCardEffect();
         card.SetupOrderInLayer(idx);
         
         drawDeck.Add(card);

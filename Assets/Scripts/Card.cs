@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Card : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Card : MonoBehaviour
    [SerializeField] private SpriteRenderer backSpriteRenderer;
 
    private bool _isFaceDown;
+
+
+   public Action PlayCardEffect;
 
    public void SetupOrderInLayer(int idx)
    {
@@ -48,5 +52,55 @@ public class Card : MonoBehaviour
    public Color GetColor()
    {
         return _color;
+   }
+
+   public void SetCardEffect()
+   {
+        switch (_soCard.type)
+        {
+            case CardType.Skip:
+                PlayCardEffect = PlaySkipEffect;
+                break;
+            case CardType.Invert:
+                PlayCardEffect = PlayInvertEffect;
+                break;
+            case CardType.Plus2:
+                PlayCardEffect = PlayPlus2Effect;
+                break;
+            case CardType.Plus4:
+                PlayCardEffect = PlayPlus4Effect;
+                break;
+            case CardType.ChangeColor:
+                PlayCardEffect = PlayChageColorEffect;
+                break;
+            default:
+                PlayCardEffect = null;
+                break;
+        }
+   }
+
+   public void PlaySkipEffect() 
+   {
+        Debug.Log("Juego la carta Skip");
+   }
+
+   public void PlayInvertEffect() 
+   {
+        Debug.Log("Juego la carta Invert");
+   }
+
+   public void PlayPlus2Effect() 
+   {
+        Debug.Log("Juego la carta Plus2");
+   }
+
+   public void PlayPlus4Effect() 
+   {
+        Debug.Log("Juego la carta Plus4");
+   }
+
+   public void PlayChageColorEffect() 
+   {
+        Debug.Log("Juego la carta ChangeColor");
    }
 }

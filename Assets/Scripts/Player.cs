@@ -50,20 +50,25 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < totalInitialCards; i++)
         {
-            Card drewCard =  CardsManager.Instance.DrawCardFromDrawDeck();
-            Transform cardTransform = drewCard.transform;
-
-            cardTransform.SetParent(handTransform);
-            cardTransform.localPosition = Vector3.zero;
-            
-            float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
-            cardTransform.localScale = new Vector3(
-                visualCardWidth, prop * cardTransform.localScale.y, 1);
-
-            drewCard.IsFaceDown(false);
-
-            AddCardToPlayerHand(drewCard);
+            DrawCardToPlayerHand();
         }
+    }
+
+    public void DrawCardToPlayerHand()
+    {
+        Card drewCard =  CardsManager.Instance.DrawCardFromDrawDeck();
+        Transform cardTransform = drewCard.transform;
+
+        cardTransform.SetParent(handTransform);
+        cardTransform.localPosition = Vector3.zero;
+        
+        float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
+        cardTransform.localScale = new Vector3(
+            visualCardWidth, prop * cardTransform.localScale.y, 1);
+
+        drewCard.IsFaceDown(false);
+
+        AddCardToPlayerHand(drewCard);
 
         ArrangePlayerHandCards();
     }
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour
 
             SelectableCard selectableCard = card.GetComponent<SelectableCard>();
             selectableCard.SetOriginalPosition(cardTransform.position);
+            selectableCard.SetOriginalScale(cardTransform.localScale);
             selectableCard.SetOriginalIndex(i);
         }
     }
@@ -142,6 +148,16 @@ public class Player : MonoBehaviour
                     return true;
                 }
             }
+        }
+
+        return false;
+    }
+
+    public bool CanPlayAnyCard() 
+    {
+        foreach (Card card in hand)
+        {
+            if (CanPlayCard(card)) return true;
         }
 
         return false;
@@ -185,6 +201,8 @@ public class Player : MonoBehaviour
         {
             Destroy(card.GetComponent<SelectableCard>());
             Destroy(card.GetComponent<BoxCollider2D>());
+
+            card.PlayCardEffect();
 
             RemoveCardFromPlayerHand(card);  
             cardsManager.AddCardToDiscardDeck(card);

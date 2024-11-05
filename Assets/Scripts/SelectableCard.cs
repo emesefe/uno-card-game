@@ -7,15 +7,26 @@ public class SelectableCard : MonoBehaviour
     private Player player;
     private Card card;
     private Vector3 originalPosition;
+    private Vector3 originalScale;
     private int originalIndex;
 
     private bool seletectedCard;
 
     private float distanceToGoUp = 2.5f;
+    private float increaseScaleAmount = 1f;
+
+    private float animationTime = 0.25f;
+
+
 
     public void SetOriginalPosition(Vector3 position)
     {
         originalPosition = position;
+    }
+
+    public void SetOriginalScale(Vector3 scale)
+    {
+        originalScale = scale;
     }
 
     public void SetOriginalIndex(int index)
@@ -53,7 +64,8 @@ public class SelectableCard : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, 0.25f);
+        transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, animationTime);
+        transform.DOScale(originalScale +  increaseScaleAmount * Vector3.one, animationTime);
         card.SetupOrderInLayer(player.GetPlayerHandCards().Count);
     }
 
@@ -61,7 +73,8 @@ public class SelectableCard : MonoBehaviour
     {
         if (!seletectedCard)
         {
-            transform.DOMove(originalPosition, 0.25f);
+            transform.DOMove(originalPosition, animationTime);
+            transform.DOScale(originalScale, animationTime);
             card.SetupOrderInLayer(originalIndex);
         }
     }

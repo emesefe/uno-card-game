@@ -45,8 +45,8 @@
 - [ ] Mínimo de 2 jugadores
 - [ ] Máximo de 10 jugadores
 
-- [ ] El turno será un enum
-- [ ] El sentido de los turnos será un bool
+- [x] El turno será un enum
+- [x] El sentido de los turnos será un bool
 
 - [x] El mazo de descarte será una list
 - [x] El mazo de robo será una list
@@ -129,15 +129,18 @@
 - [x] Validar si una carta se puede jugar. Se puede jugar una carta por símbolo (número o carta especial) o color
 - [x] Seleccionar una carta de la mano del jugador
 - [x] Si una carta está seleccionada y se le da un nuevo click izquierdo, vuelve a su estado original
-- [ ] Si la carta seleccionada para la jugada es una carta válida, se agranda en la mano para mostrar visualmente que se puede jugar y está seleccionada para ser jugada
-- [ ] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su estado original y suena un SFX
+- [x] Si la carta seleccionada para la jugada es una carta válida, se agranda en la mano para mostrar visualmente que se puede jugar y está seleccionada para ser jugada
+- [x] Si la carta seleccionada para la jugada es una carta válida, se mantiene elevada sobre el resto y está seleccionada para ser jugada
+- [x] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su estado original (recupera su escala)
+- [x] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su posición original en la mano
+- [ ] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), suena un SFX
 
-- [ ] El jugador confirma la jugada con un botón adicional en la UI
-- [ ] Si se hace click sobre el botón de confirmación de la jugada, se juegan todas las cartas seleccionadas
+- [ ] El jugador confirma la jugada con un botón adicional en la UI (deberes para vosotros)
+- [x] Si se hace click sobre el botón de confirmación de la jugada, se juegan todas las cartas seleccionadas
 
 - [ ] En caso de no poder tirar una carta, se roba hasta tener una válida y es obligatorio jugarla
-- [ ] El jugador solamente puede robar si no tiene ninguna carta que poder jugar
-- [ ] Si el jugador quiere robar teniendo al menos una carta que poder jugar, sonará un SFX y se destacarán las cartas que se pueden jugar
+- [x] El jugador solamente puede robar si no tiene ninguna carta que poder jugar
+- [ ] Si el jugador quiere robar teniendo al menos una carta que poder jugar, sonará un SFX y se destacarán las cartas que se pueden jugar (deberes para vosotros)
 
 - [ ] En caso de que a un jugador le quede una sola carta, aparecerá un botón en un punto aleatorio de la pantalla, sonará un SFX y el jugador con una carta tiene que ser el primero en darle al botón. Si otro jugador es más rápido en darle al botón, el jugador al que le quedaba una carta deberá robar dos cartas y pierde el turno
 
