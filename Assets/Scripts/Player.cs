@@ -22,14 +22,6 @@ public class Player : MonoBehaviour
         cardsManager = FindObjectOfType<CardsManager>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            PlaySelectedCards();
-        }
-    }
-
     private void AddCardToPlayerHand(Card card)
     {
         hand.Add(card);
@@ -193,7 +185,7 @@ public class Player : MonoBehaviour
         selectedCards.Clear();
     }
 
-    private void PlaySelectedCards()
+    public void PlaySelectedCards()
     {
         if (selectedCards.Count <= 0) return;
         
