@@ -8,7 +8,7 @@
 ```
 
 <details>
-<summary>Cartas</summary>
+# <summary>Cartas</summary>
 <br>
     <ul>
         <li>- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)</li>
@@ -25,15 +25,7 @@
 
 # Cartas
 
-- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)
-- [x] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR
-- [x] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)
-- [x] Hay un total de 8 cartas SKIP (2 por cada color)
-- [x] Hay un total de 8 cartas INVERT (2 por cada color)
-- [x] Hay un total de 8 cartas PLUS2 (2 por cada color)
-- [x] Hay un total de 4 cartas PLUS4
-- [x] Hay un total de 4 cartas CHANGE_COLOR
-- [x] Hay un total de 112 cartas
+
 
 ### Scriptable Object (SOCard)
 
