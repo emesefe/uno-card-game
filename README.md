@@ -10,15 +10,15 @@
 <details>
 <summary>Cartas</summary>
 <br>
-    <li>- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)</li>
-    <li>- [x] Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR</li>
-    <li>- [x] Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)</li>
-    <li>- [x] Hay un total de 8 cartas SKIP (2 por cada color)</li>
-    <li>- [x] Hay un total de 8 cartas INVERT (2 por cada color)</li>
-    <li>- [x] Hay un total de 8 cartas PLUS2 (2 por cada color)</li>
-    <li>- [x] Hay un total de 4 cartas PLUS4</li>
-    <li>- [x] Hay un total de 4 cartas CHANGE_COLOR</li>
-    <li>- [x] Hay un total de 112 cartas</li>
+    <li>✅ Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)</li>
+    <li>✅ Los tipos de cartas son NUMBER, SKIP, INVERT, PLUS2, PLUS4, CHANGE_COLOR</li>
+    <li>✅ Hay un total de 80 cartas NUMBER (2 por cada color y símbolo, del 0 al 9)</li>
+    <li>✅ Hay un total de 8 cartas SKIP (2 por cada color)</li>
+    <li>✅ Hay un total de 8 cartas INVERT (2 por cada color)</li>
+    <li>✅ Hay un total de 8 cartas PLUS2 (2 por cada color)</li>
+    <li>✅ Hay un total de 4 cartas PLUS4</li>
+    <li>✅ Hay un total de 4 cartas CHANGE_COLOR</li>
+    <li>✅ Hay un total de 112 cartas</li>
 </details>
 
 # Cartas
