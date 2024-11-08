@@ -7,8 +7,10 @@
                                                                              
 ```
 
+# Cartas
+
 <details>
-# <summary>Cartas</summary>
+<summary>Totales</summary>
 <br>
     <ul>
         <li>- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)</li>
@@ -23,29 +25,37 @@
     </ul>
 </details>
 
-# Cartas
+<details>
+<summary>Scriptable Object (SOCard)</summary>
+<br>
+    <ul>
+        <li>- [x] Type</li>
+        <li>- [x] Digit</li>
+        <li>- [x] Sprite</li>
+    </ul>
+</details>
 
+<details>
+<summary>Visual</summary>
+<br>
+    <ul>
+        <li>- [x] Color</li>
+        <li>- [x] Background de la carta con un color</li>
+        <li>- [x] Sprite (del SO Card)</li>
+    </ul>
+</details>
 
-
-### Scriptable Object (SOCard)
-
-- Type
-- Digit
-- Sprite
-
-### Visual
-
-- [x] Color
-- [x] Background de la carta con un color
-- [x] Sprite (del SO Card)
-
-### Lógica
-
-- SKIP -> Saltar turno
-- INVERT -> Cambiar sentido de turnos
-- PLUS2 -> Robar carta y saltar turno
-- PLUS4 -> Cambiar de color, robar carta y saltar turno
-- CHANGE_COLOR -> Cambiar de color
+<details>
+<summary>Lógica</summary>
+<br>
+    <ul>
+        <li>- [x] SKIP -> Saltar turno</li>
+        <li>- [x] INVERT -> Cambiar sentido de turnos</li>
+        <li>- [x] PLUS2 -> Robar carta y saltar turno</li>
+        <li>- [x] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
+        <li>- [x] CHANGE_COLOR -> Cambiar de color</li>
+    </ul>
+</details>
 
 # Estructura del juego 
 
