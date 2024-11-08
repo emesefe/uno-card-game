@@ -49,27 +49,30 @@
 <summary>Lógica</summary>
 <br>
     <ul>
-        <li>- [x] SKIP -> Saltar turno</li>
-        <li>- [x] INVERT -> Cambiar sentido de turnos</li>
-        <li>- [x] PLUS2 -> Robar carta y saltar turno</li>
-        <li>- [x] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
-        <li>- [x] CHANGE_COLOR -> Cambiar de color</li>
+        <li>- [ ] SKIP -> Saltar turno</li>
+        <li>- [ ] INVERT -> Cambiar sentido de turnos</li>
+        <li>- [ ] PLUS2 -> Robar carta y saltar turno</li>
+        <li>- [ ] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
+        <li>- [ ] CHANGE_COLOR -> Cambiar de color</li>
     </ul>
 </details>
 
 # Estructura del juego 
 
-- [x] Los jugadores se guardarán en un array
-- [ ] Mínimo de 2 jugadores
-- [ ] Máximo de 10 jugadores
-
-- [x] El turno será un enum
-- [x] El sentido de los turnos será un bool
-
-- [x] El mazo de descarte será una list
-- [x] El mazo de robo será una list
-
-- [x] La mano del jugador será una list
+<details>
+<summary>General</summary>
+<br>
+    <ul>
+        <li>- [x] Los jugadores se guardarán en un array</li>
+        <li>- [ ] Mínimo de 2 jugadores</li>
+        <li>- [ ] Máximo de 10 jugadores</li>
+        <li>- [x] El turno será un enum</li>
+        <li>- [x] El sentido de los turnos será un bool</li>
+        <li>- [x] El mazo de descarte será una list</li>
+        <li>- [x] El mazo de robo será una list</li>
+        <li>- [x] La mano del jugador será una list</li>
+    </ul>
+</details>
 
 ## Escenas
 
