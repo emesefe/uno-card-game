@@ -10,7 +10,7 @@
 # Cartas
 
 <details>
-<summary>Totales</summary>
+<summary>Totales ☑️</summary>
 <br>
     <ul>
         <li>- [x] Hay 4 colores (BLUE, YELLOW, RED, GREEN por defecto, otros 4 especiales para daltónicos)</li>
