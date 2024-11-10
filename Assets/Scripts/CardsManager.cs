@@ -23,11 +23,11 @@ public class CardsManager : MonoBehaviour
 
     private Dictionary<string, Color> cardColors = new Dictionary<string, Color>() 
     {
-        {"Red", Color.red},
-        {"Green", Color.green},
-        {"Blue", Color.blue},
-        {"Yellow", Color.yellow},
-        {"Black", Color.black}
+        {"Red", Constants.RED_COLOR},
+        {"Green", Constants.GREEN_COLOR},
+        {"Blue", Constants.BLUE_COLOR},
+        {"Yellow", Constants.YELLOW_COLOR},
+        {"Black", Constants.BLACK_COLOR}
     };
 
     [SerializeField] private List<Card> drawDeck;

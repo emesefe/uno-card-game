@@ -26,7 +26,7 @@
 </details>
 
 <details>
-<summary>Scriptable Object (SOCard)</summary>
+<summary>Scriptable Object (SOCard) ☑️</summary>
 <br>
     <ul>
         <li>- [x] Type</li>
@@ -36,7 +36,7 @@
 </details>
 
 <details>
-<summary>Visual</summary>
+<summary>Visual ☑️</summary>
 <br>
     <ul>
         <li>- [x] Color</li>
@@ -119,7 +119,7 @@
         <li>- [x] Mostrar la mano del jugador</li>
         <li>- [ ] Si no es el turno del jugador, las cartas se ven más pequeñas e incluso más oscuras</li>
         <li>- [x] Ajustar las cartas de la mano del jugador al espacio disponible y en función de la cantidad</li>
-        <li>- [ ] Botón de confirmar jugada</li>
+        <li>- [x] Botón de confirmar jugada</li>
         <li>- [x] Mostrar el mazo de robo</li>
         <li>- [ ] Botón de robar carta</li>
         <li>- [ ] Mostrar el mazo de descarte con un mínimo de 4 cartas</li>
