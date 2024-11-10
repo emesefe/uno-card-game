@@ -52,6 +52,7 @@ public class SelectableCard : MonoBehaviour
             {
                 seletectedCard = true;
                 player.AddSelectedCard(card);
+                UIManager.Instance.EnableConfirmSelectionButton(true);
             }
         } 
 
@@ -59,6 +60,11 @@ public class SelectableCard : MonoBehaviour
         {
             seletectedCard = false;
             player.RemoveSelectedCard(card);
+
+            if (player.GetTotalSelectedCards() <= 0)
+            {
+                UIManager.Instance.EnableConfirmSelectionButton(false);
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class CardsManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("There's more than one instance");
+            Debug.LogError("There's more than one instance of CardsManager");
         }
 
         Instance = this;

@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("There's more than one instance");
+            Debug.LogError("There's more than one instance of GameManager");
         }
 
         Instance = this;

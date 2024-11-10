@@ -139,7 +139,7 @@
     <ul>  
         <li>- [ ] Validar username</li>
         <li>- [ ] El primer turno es al azar</li>
-        <li>- [ ] Cambiar de turno, teninendo en cuenta si se salta a un jugador o varios</li>
+        <li>- [x] Cambiar de turno, teninendo en cuenta si se salta a un jugador o varios</li>
         <li>- [ ] Perder turno / Saltar turno</li>
         <li>- [ ] En cada turno conocemos la última carta en el mazo de descarte (símbolo y color), el jugador que tiene el turno y el tiempo restante del turno</li>
         <li>- [ ] Reiniciar temporizador</li>
@@ -167,7 +167,7 @@
         <li>- [x] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su estado original (recupera su escala)</li>
         <li>- [x] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), vuelve a su posición original en la mano</li>
         <li>- [ ] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), suena un SFX</li>
-        <li>- [ ] El jugador confirma la jugada con un botón adicional en la UI (deberes para vosotros)</li>
+        <li>- [x] El jugador confirma la jugada con un botón adicional en la UI (deberes para vosotros)</li>
         <li>- [x] Si se hace click sobre el botón de confirmación de la jugada, se juegan todas las cartas seleccionadas</li>
         <li>- [ ] En caso de no poder tirar una carta, se roba hasta tener una válida y es obligatorio jugarla</li>
         <li>- [x] El jugador solamente puede robar si no tiene ninguna carta que poder jugar</li>
