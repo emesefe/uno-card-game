@@ -140,7 +140,7 @@
         <li>- [ ] Validar username</li>
         <li>- [ ] El primer turno es al azar</li>
         <li>- [x] Cambiar de turno, teninendo en cuenta si se salta a un jugador o varios</li>
-        <li>- [ ] Perder turno / Saltar turno</li>
+        <li>- [x] Perder turno / Saltar turno</li>
         <li>- [ ] En cada turno conocemos la última carta en el mazo de descarte (símbolo y color), el jugador que tiene el turno y el tiempo restante del turno</li>
         <li>- [ ] Reiniciar temporizador</li>
         <li>- [ ] Detectar si el temporizador ha finalizado</li>
@@ -169,7 +169,7 @@
         <li>- [ ] Si la carta seleccionada no es válida para la jugada (teniendo en cuenta las cartas previamente seleccionadas), suena un SFX</li>
         <li>- [x] El jugador confirma la jugada con un botón adicional en la UI (deberes para vosotros)</li>
         <li>- [x] Si se hace click sobre el botón de confirmación de la jugada, se juegan todas las cartas seleccionadas</li>
-        <li>- [ ] En caso de no poder tirar una carta, se roba hasta tener una válida y es obligatorio jugarla</li>
+        <li>- [x] En caso de no poder tirar una carta, se roba hasta tener una válida y es obligatorio jugarla</li>
         <li>- [x] El jugador solamente puede robar si no tiene ninguna carta que poder jugar</li>
         <li>- [ ] Si el jugador quiere robar teniendo al menos una carta que poder jugar, sonará un SFX y se destacarán las cartas que se pueden jugar (deberes para vosotros)</li>
         <li>- [ ] En caso de que a un jugador le quede una sola carta, aparecerá un botón en un punto aleatorio de la pantalla, sonará un SFX y el jugador con una carta tiene que ser el primero en darle al botón. Si otro jugador es más rápido en darle al botón, el jugador al que le quedaba una carta deberá robar dos cartas y pierde el turno</li>
