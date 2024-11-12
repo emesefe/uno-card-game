@@ -574,7 +574,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   handHorizontalLimits: []
   visualCardWidth: 2
   isMainPlayer: 0
-  overrideInitialCards: 0
+  overrideInitialCards: 1
   initialCardsSelector: {fileID: 1375616334}
 --- !u!4 &1375616333
 Transform:
@@ -1454,7 +1454,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1375616332}
-  initialCards: []
+  initialCards:
+  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+    color: 0
+    total: 1
+  - soCard: {fileID: 11400000, guid: e99c852fffef5400795754d09d74479e, type: 2}
+    color: 2
+    total: 1
 --- !u!1 &1424477999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,11 +1751,17 @@ MonoBehaviour:
   initialCards:
   - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 0
-    total: 3
-  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
+    total: 2
+  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 1
     total: 1
   - soCard: {fileID: 11400000, guid: d7f4854edda3d4833a7ec25ac675f49c, type: 2}
+    color: 2
+    total: 1
+  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+    color: 3
+    total: 1
+  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 2
     total: 1
 --- !u!1 &1892682366

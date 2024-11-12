@@ -125,10 +125,7 @@ public class Player : MonoBehaviour
     {
         foreach (Card card in hand)
         {
-            if (CanPlayCard(card))
-            {
-                return true;
-            }
+            if (CanPlayCard(card)) return true;
         }
 
         return false;
@@ -256,6 +253,8 @@ public class Player : MonoBehaviour
         }
         
         GameManager.Instance.ChangeTurn();
+        
+        UIManager.Instance.EnableConfirmSelectionButton(false);
 
         ClearSelectedCards();
         ArrangePlayerHandCards();
