@@ -42,13 +42,6 @@ public class Player : MonoBehaviour
     {
         hand.Remove(card);
     }
-
-    private void SetCardAsSelectableCard(Card card)
-    {
-        SelectableCard selectableCard = card.gameObject.AddComponent<SelectableCard>();
-        selectableCard.SetPlayer(this);
-        selectableCard.SetCard(card);  
-    }
     
     public void InitializePlayerHand()
     {
@@ -64,7 +57,7 @@ public class Player : MonoBehaviour
             initialCardsSelector.InitializeHandWithSelection();
         }
     }
-
+    
     public void DrawCardToPlayerHand(Card initialCard = null)
     {
         Card drewCard = CardsManager.Instance.DrawCardFromDrawDeck();
@@ -88,7 +81,98 @@ public class Player : MonoBehaviour
         }
         else drewCard.HideCard();
     }
+    
+    public bool CanPlayCard(Card cardToPlay)
+    {
+        Card lastPlayedCard = CardsManager.Instance.GetLastPlayedCard();
 
+        if (GameManager.Instance.GetTotalCardsToDraw() > 0 && lastPlayedCard.GetCardType() == CardType.Plus2)
+        {
+            return cardToPlay.GetCardType() == CardType.Plus2;
+        }
+        
+        // TODO: Faltan casos especiales que dependen de las cartas especiales
+        if (cardToPlay.GetCardType() == CardType.Plus4 
+            || cardToPlay.GetCardType() == CardType.ChangeColor)
+        {
+            return true;
+        }
+        
+        if (cardToPlay.GetColor() == lastPlayedCard.GetColor()) 
+        {
+            return true;
+        }
+
+        if (cardToPlay.GetCardType() == lastPlayedCard.GetCardType())
+        {        
+            if (cardToPlay.GetCardType() != CardType.Number) 
+            {
+                return true;
+            }
+            else 
+            {
+                if (cardToPlay.GetCardDigit() == lastPlayedCard.GetCardDigit())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    
+    public bool CanPlayAnyCard() 
+    {
+        foreach (Card card in hand)
+        {
+            if (CanPlayCard(card))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public List<Card> GetPlayerHandCards()
+    {
+        return hand;
+    }
+    
+    public void PlayCard(Card card)
+    {
+        card.PlayCardEffect();
+        RemoveCardFromPlayerHand(card);  
+        cardsManager.AddCardToDiscardDeck(card);
+    }
+    
+    public Card FindCardInHand(CardType cardType)
+    {
+        foreach (Card card in hand)
+        {
+            if (card.GetCardType() == cardType)
+            {
+                return card;
+            }
+        }
+
+        return null;
+    }
+
+    #region MAIN PLAYER
+
+    public bool GetIsMainPlayer()
+    {
+        return isMainPlayer;
+    }
+
+    private void SetCardAsSelectableCard(Card card)
+    {
+        SelectableCard selectableCard = card.gameObject.AddComponent<SelectableCard>();
+        selectableCard.SetPlayer(this);
+        selectableCard.SetCard(card);  
+    }
+    
     /// <summary>
     /// This function returns the total distance of the player's hand and the distance between the centers of the cards
     /// </summary>
@@ -133,65 +217,7 @@ public class Player : MonoBehaviour
             selectableCard.SetOriginalIndex(i);
         }
     }
-
-    public bool CanPlayCard(Card cardToPlay)
-    {
-        Card lastPlayedCard = CardsManager.Instance.GetLastPlayedCard();
-
-        if (GameManager.Instance.GetTotalCardsToDraw() > 0 && lastPlayedCard.GetCardType() == CardType.Plus2)
-        {
-            return cardToPlay.GetCardType() == CardType.Plus2;
-        }
-        
-        // TODO: Faltan casos especiales que dependen de las cartas especiales
-        if (cardToPlay.GetCardType() == CardType.Plus4 
-        || cardToPlay.GetCardType() == CardType.ChangeColor)
-        {
-            return true;
-        }
-        
-        if (cardToPlay.GetColor() == lastPlayedCard.GetColor()) 
-        {
-            return true;
-        }
-
-        if (cardToPlay.GetCardType() == lastPlayedCard.GetCardType())
-        {        
-            if (cardToPlay.GetCardType() != CardType.Number) 
-            {
-                return true;
-            }
-            else 
-            {
-                if (cardToPlay.GetCardDigit() == lastPlayedCard.GetCardDigit())
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool CanPlayAnyCard() 
-    {
-        foreach (Card card in hand)
-        {
-            if (CanPlayCard(card))
-            {
-                Debug.Log($"La carta que se puede jugar es {card.GetCardType()} - {card.GetColor()}");
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public List<Card> GetPlayerHandCards()
-    {
-        return hand;
-    }
-
+    
     public Card GetSelectedCard()
     {
         return selectedCards[0];
@@ -204,7 +230,7 @@ public class Player : MonoBehaviour
 
     public void RemoveSelectedCard(Card selectedCard)
     {
-       selectedCards.Remove(selectedCard);
+        selectedCards.Remove(selectedCard);
     }
 
     public int GetTotalSelectedCards()
@@ -235,23 +261,5 @@ public class Player : MonoBehaviour
         ArrangePlayerHandCards();
     }
 
-    public void PlayCard(Card card)
-    {
-        card.PlayCardEffect();
-        RemoveCardFromPlayerHand(card);  
-        cardsManager.AddCardToDiscardDeck(card);
-    }
-    
-    public Card FindCardInHand(CardType cardType)
-    {
-        foreach (Card card in hand)
-        {
-            if (card.GetCardType() == cardType)
-            {
-                return card;
-            }
-        }
-
-        return null;
-    }
+    #endregion
 }

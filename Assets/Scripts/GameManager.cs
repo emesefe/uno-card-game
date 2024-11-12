@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                if (currentPlayer.GetIsMainPlayer()) yield break;
+                
                 yield return new WaitForSeconds(1);
                 // Tengo que jugar el / los PLUS2 (del mismo color) 
                 Card cardPlus2ToPlay = currentPlayer.FindCardInHand(CardType.Plus2);
@@ -122,8 +124,6 @@ public class GameManager : MonoBehaviour
             
             ChangeTurn();
         }
-        
-        yield return null;
     }
 
     public void ChangeTurnOrder()
