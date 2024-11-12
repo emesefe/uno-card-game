@@ -114,7 +114,8 @@
     <ul>  
         <li>- [ ] Panel Win con 2 botones (volver a jugar o volver a Main Menu). Mostrar total de rondas ganadas en la misma sesión.</li>
         <li>- [ ] Panel Game Over con 2 botones (volver a jugar o volver a Main Menu). Mostrar total de rondas ganadas en la misma sesión.</li>
-        <li>- [ ] Panel de selector de color (4 opciones de color y opción random)</li>
+        <li>- [x] Panel de selector de color (4 opciones de color y opción random)</li>
+        <li>- [ ] Añadir a panel de selector de color la opción random</li>
         <li>- [ ] Mostrar de qué jugador es el turno haciendo que el icono del jugador esté destacado (más grande, brillo, indicador sobre el icono)</li>
         <li>- [x] Mostrar la mano del jugador</li>
         <li>- [ ] Si no es el turno del jugador, las cartas se ven más pequeñas e incluso más oscuras</li>
