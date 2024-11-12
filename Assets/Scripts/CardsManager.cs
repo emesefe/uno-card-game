@@ -114,14 +114,16 @@ public class CardsManager : MonoBehaviour
     public void AddCardToDiscardDeck(Card card)
     {
         discardDeck.Add(card);
-
-        card.gameObject.transform.SetParent(discardDeckTransform);
-        card.gameObject.transform.localPosition = Vector3.zero;
+        
+        card.ChangeParent(discardDeckTransform);
+        
+        // TODO: Hacer función cambiar escala de la carta
         card.gameObject.transform.localScale = new Vector3(Constants.CARD_WIDTH, Constants.CARD_HEIGHT, 1);
 
         card.SetupOrderInLayer(discardDeck.Count - 1);
 
         card.IsFaceDown(false);
+        card.ShowCard();
     }
 
     public Card GetLastPlayedCard()

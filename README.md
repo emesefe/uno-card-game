@@ -49,8 +49,8 @@
 <summary>Lógica</summary>
 <br>
     <ul>
-        <li>- [ ] SKIP -> Saltar turno</li>
-        <li>- [ ] INVERT -> Cambiar sentido de turnos</li>
+        <li>- [x] SKIP -> Saltar turno</li>
+        <li>- [x] INVERT -> Cambiar sentido de turnos</li>
         <li>- [ ] PLUS2 -> Robar carta y saltar turno</li>
         <li>- [ ] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
         <li>- [ ] CHANGE_COLOR -> Cambiar de color</li>

@@ -33,6 +33,16 @@ public class Card : MonoBehaviour
         cardSpriteRenderer.color = color;
    }
 
+   public void ShowCard()
+   {
+        gameObject.SetActive(true);
+   }
+
+   public void HideCard()
+   {
+        gameObject.SetActive(false);
+   }
+
    public void IsFaceDown(bool isFaceDown)
    {
         _isFaceDown = isFaceDown;
@@ -54,10 +64,19 @@ public class Card : MonoBehaviour
         return _color;
    }
 
+   public void ChangeParent(Transform newParent)
+   {
+        transform.SetParent(newParent);
+        transform.localPosition = Vector3.zero;
+   }
+
    public void SetCardEffect()
    {
         switch (_soCard.type)
         {
+             case CardType.Number:
+                  PlayCardEffect = PlayNumberEffect;
+                  break;
             case CardType.Skip:
                 PlayCardEffect = PlaySkipEffect;
                 break;
@@ -78,20 +97,28 @@ public class Card : MonoBehaviour
                 break;
         }
    }
+   
+   public void PlayNumberEffect() 
+   {
+        Debug.Log("Juego la carta Número");
+   }
 
    public void PlaySkipEffect() 
    {
         Debug.Log("Juego la carta Skip");
+        GameManager.Instance.ChangeTurn();
    }
 
    public void PlayInvertEffect() 
    {
         Debug.Log("Juego la carta Invert");
+        GameManager.Instance.ChangeTurnOrder();
    }
 
    public void PlayPlus2Effect() 
    {
         Debug.Log("Juego la carta Plus2");
+        GameManager.Instance.UpdateTotalCardsToDraw(2);
    }
 
    public void PlayPlus4Effect() 

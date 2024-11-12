@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private CardsManager cardsManager;
 
+    private int totalCardsToDraw;
     
 
     private void Awake()
@@ -46,8 +48,15 @@ public class GameManager : MonoBehaviour
         // Inicializar partida
         cardsManager.CreateDrawDeck();
         cardsManager.ShuffleDeck();
+        
+        turnOrderClockwise = true;
+        totalCardsToDraw = 0;
 
-        players[0].InitializePlayerHand();
+        foreach (Player player in players)
+        {
+            player.InitializePlayerHand();
+        }
+        
         cardsManager.AddCardToDiscardDeck(cardsManager.DrawCardFromDrawDeck());
     }
 
@@ -65,7 +74,7 @@ public class GameManager : MonoBehaviour
             currentTurnIdx += turnsToChange;
             if (currentTurnIdx >= totalPlayingPlayers) 
             {
-                currentTurnIdx = currentTurnIdx - totalPlayingPlayers;
+                currentTurnIdx -= totalPlayingPlayers;
             }
         }
         else 
@@ -73,10 +82,64 @@ public class GameManager : MonoBehaviour
             currentTurnIdx -= turnsToChange;
             if (currentTurnIdx < 0) 
             {
-                currentTurnIdx = currentTurnIdx + totalPlayingPlayers;
+                currentTurnIdx += totalPlayingPlayers;
             }
         }
         
         currentTurn = (Turn)currentTurnIdx;
+        Debug.Log($"Ahora es el turno de {currentTurnIdx}");
+
+        StartCoroutine(CheckIfPlus2OrPlus4WasPlayed());
+    }
+
+    private IEnumerator CheckIfPlus2OrPlus4WasPlayed()
+    {
+        if (totalCardsToDraw > 0)
+        {
+            Player currentPlayer = players[(int)currentTurn];
+            Debug.Log($"currentPlayer: {currentPlayer}");
+            
+            bool hasToDraw = !currentPlayer.CanPlayAnyCard();
+            Debug.Log($"Tengo que robar? {hasToDraw}");
+
+            if (hasToDraw)
+            {
+                // El nuevo jugador tiene que robar cartas
+                for (int i = 0; i < totalCardsToDraw; i++)
+                {
+                    currentPlayer.DrawCardToPlayerHand();
+                }
+
+                totalCardsToDraw = 0;
+            }
+            else
+            {
+                yield return new WaitForSeconds(1);
+                // Tengo que jugar el / los PLUS2 (del mismo color) 
+                Card cardPlus2ToPlay = currentPlayer.FindCardInHand(CardType.Plus2);
+                currentPlayer.PlayCard(cardPlus2ToPlay);
+                
+            }
+            
+            ChangeTurn();
+        }
+        
+        yield return null;
+    }
+
+    public void ChangeTurnOrder()
+    {
+        turnOrderClockwise = !turnOrderClockwise;
+        Debug.Log($"Ahora el sentido es en sentido horario: {turnOrderClockwise}");
+    }
+
+    public void UpdateTotalCardsToDraw(int cardsToDraw)
+    {
+        totalCardsToDraw += cardsToDraw;
+    }
+
+    public int GetTotalCardsToDraw()
+    {
+        return totalCardsToDraw;
     }
 }

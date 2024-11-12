@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Transform handTransform;
 
+    [Header("Main Player")]
     [SerializeField] private float[] handHorizontalLimits;
     [Range(2, 6)][SerializeField] private int visualCardWidth;
     private float maxDistanceBetweenCenters = 6;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private List<Card> selectedCards = new List<Card>();
 
     private CardsManager cardsManager;
+
+    [SerializeField] private bool isMainPlayer; 
 
     private void Start()
     {
@@ -26,18 +29,21 @@ public class Player : MonoBehaviour
     {
         hand.Add(card);
 
-        //TODO: Averiguar si es el player principal (bool)
-        
-        SelectableCard selectableCard = card.gameObject.AddComponent<SelectableCard>();
-        selectableCard.SetPlayer(this);
-        selectableCard.SetCard(card);
+        if (isMainPlayer) SetCardAsSelectableCard(card);
     }
-
+    
     private void RemoveCardFromPlayerHand(Card card)
     {
         hand.Remove(card);
     }
 
+    private void SetCardAsSelectableCard(Card card)
+    {
+        SelectableCard selectableCard = card.gameObject.AddComponent<SelectableCard>();
+        selectableCard.SetPlayer(this);
+        selectableCard.SetCard(card);  
+    }
+    
     public void InitializePlayerHand()
     {
         for (int i = 0; i < totalInitialCards; i++)
@@ -49,20 +55,22 @@ public class Player : MonoBehaviour
     public void DrawCardToPlayerHand()
     {
         Card drewCard =  CardsManager.Instance.DrawCardFromDrawDeck();
-        Transform cardTransform = drewCard.transform;
-
-        cardTransform.SetParent(handTransform);
-        cardTransform.localPosition = Vector3.zero;
-        
-        float prop = (float)visualCardWidth / Constants.CARD_WIDTH; 
-        cardTransform.localScale = new Vector3(
-            visualCardWidth, prop * cardTransform.localScale.y, 1);
-
-        drewCard.IsFaceDown(false);
-
         AddCardToPlayerHand(drewCard);
-
-        ArrangePlayerHandCards();
+        
+        drewCard.ChangeParent(handTransform);
+        
+        if (isMainPlayer)
+        {
+            Transform cardTransform = drewCard.transform;
+            // TODO: Hacer función cambiar escala de la carta
+            float prop = (float)visualCardWidth / Constants.CARD_WIDTH;
+            cardTransform.localScale = new Vector3(
+                visualCardWidth, prop * cardTransform.localScale.y, 1);
+            
+            drewCard.IsFaceDown(false);
+            ArrangePlayerHandCards();
+        }
+        else drewCard.HideCard();
     }
 
     /// <summary>
@@ -92,7 +100,7 @@ public class Player : MonoBehaviour
     {
         (float totalDistance, float distanceBetweenCenters) = GetDistances();
 
-        float initialX = -(totalDistance / 2) + visualCardWidth / 2;
+        float initialX = -(totalDistance / 2) + visualCardWidth / 2f;
         for (int i = 0; i < hand.Count; i++)
         {
             Card card = hand[i];
@@ -114,7 +122,11 @@ public class Player : MonoBehaviour
     {
         Card lastPlayedCard = CardsManager.Instance.GetLastPlayedCard();
 
-        // TODO: ¿Qué pasa cuando me han tirado un +2? No puedo tirar ni un +4 ni un comodín
+        if (GameManager.Instance.GetTotalCardsToDraw() > 0 && lastPlayedCard.GetCardType() == CardType.Plus2)
+        {
+            return cardToPlay.GetCardType() == CardType.Plus2;
+        }
+        
         // TODO: Faltan casos especiales que dependen de las cartas especiales
         if (cardToPlay.GetCardType() == CardType.Plus4 
         || cardToPlay.GetCardType() == CardType.ChangeColor)
@@ -149,7 +161,11 @@ public class Player : MonoBehaviour
     {
         foreach (Card card in hand)
         {
-            if (CanPlayCard(card)) return true;
+            if (CanPlayCard(card))
+            {
+                Debug.Log($"La carta que se puede jugar es {card.GetCardType()} - {card.GetColor()}");
+                return true;
+            }
         }
 
         return false;
@@ -194,13 +210,32 @@ public class Player : MonoBehaviour
             Destroy(card.GetComponent<SelectableCard>());
             Destroy(card.GetComponent<BoxCollider2D>());
 
-            card.PlayCardEffect();
-
-            RemoveCardFromPlayerHand(card);  
-            cardsManager.AddCardToDiscardDeck(card);
+            PlayCard(card);
         }
+        
+        GameManager.Instance.ChangeTurn();
 
         ClearSelectedCards();
         ArrangePlayerHandCards();
+    }
+
+    public void PlayCard(Card card)
+    {
+        card.PlayCardEffect();
+        RemoveCardFromPlayerHand(card);  
+        cardsManager.AddCardToDiscardDeck(card);
+    }
+    
+    public Card FindCardInHand(CardType cardType)
+    {
+        foreach (Card card in hand)
+        {
+            if (card.GetCardType() == cardType)
+            {
+                return card;
+            }
+        }
+
+        return null;
     }
 }
