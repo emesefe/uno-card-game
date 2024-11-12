@@ -19,12 +19,18 @@ public class Player : MonoBehaviour
     private CardsManager cardsManager;
 
     [SerializeField] private bool isMainPlayer; 
+    
+        
+    [Header("Testing")]
+    [SerializeField] private bool overrideInitialCards;
+
+    [SerializeField] private InitialCardsSelector initialCardsSelector;
 
     private void Start()
     {
         cardsManager = FindObjectOfType<CardsManager>();
     }
-
+    
     private void AddCardToPlayerHand(Card card)
     {
         hand.Add(card);
@@ -46,15 +52,25 @@ public class Player : MonoBehaviour
     
     public void InitializePlayerHand()
     {
-        for (int i = 0; i < totalInitialCards; i++)
+        if (!overrideInitialCards) // TODO: Remove in the future, this is only for testing
         {
-            DrawCardToPlayerHand();
+            for (int i = 0; i < totalInitialCards; i++)
+            {
+                DrawCardToPlayerHand();
+            }
+        }
+        else // TODO: Remove in the future, this is only for testing
+        {
+            initialCardsSelector.InitializeHandWithSelection();
         }
     }
 
-    public void DrawCardToPlayerHand()
+    public void DrawCardToPlayerHand(Card initialCard = null)
     {
-        Card drewCard =  CardsManager.Instance.DrawCardFromDrawDeck();
+        Card drewCard = CardsManager.Instance.DrawCardFromDrawDeck();
+        
+        if (initialCard != null) drewCard = initialCard;// TODO: Remove in the future, this is only for testing
+        
         AddCardToPlayerHand(drewCard);
         
         drewCard.ChangeParent(handTransform);

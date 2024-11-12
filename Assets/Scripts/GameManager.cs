@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     private CardsManager cardsManager;
 
     private int totalCardsToDraw;
-    
 
     private void Awake()
     {

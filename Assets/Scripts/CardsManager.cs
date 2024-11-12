@@ -43,13 +43,13 @@ public class CardsManager : MonoBehaviour
         Instance = this;
     }
 
-    private Card CreateCard(SOCard soCard, Color color, int idx)
+    // TODO: When finished with testing, turn this function back to private
+    public Card CreateCard(SOCard soCard, Color color, int idx)
     {
         GameObject newCard = Instantiate(cardPrefab);
-        newCard.transform.SetParent(drawDeckTransform);
-        newCard.transform.localPosition = Vector3.zero;
 
         Card card = newCard.GetComponent<Card>();
+        card.ChangeParent(drawDeckTransform);
         card.SetupCardVisuals(soCard, color);
         card.SetCardEffect();
         card.SetupOrderInLayer(idx);
@@ -70,7 +70,7 @@ public class CardsManager : MonoBehaviour
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    newCard = CreateCard(soCard, cardColors[CardColor.Black.ToString()], layer);
+                    newCard = CreateCard(soCard, GetColorFromCardColor(CardColor.Black), layer);
                     newCard.IsFaceDown(true);   
                     layer++;
                 }
@@ -80,7 +80,7 @@ public class CardsManager : MonoBehaviour
                 for (int i = 0; i < 8; i++)
                 {
                     CardColor color = (CardColor)(i % 4);
-                    newCard = CreateCard(soCard, cardColors[color.ToString()], layer);
+                    newCard = CreateCard(soCard, GetColorFromCardColor(color), layer);
                     newCard.IsFaceDown(true);   
                     layer++;
                 }
@@ -142,5 +142,10 @@ public class CardsManager : MonoBehaviour
         if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
 
         return true;
-    }    
+    }
+
+    public Color GetColorFromCardColor(CardColor cardColor)
+    {
+        return cardColors[cardColor.ToString()];
+    }
 }

@@ -74,9 +74,9 @@ public class Card : MonoBehaviour
    {
         switch (_soCard.type)
         {
-             case CardType.Number:
-                  PlayCardEffect = PlayNumberEffect;
-                  break;
+            case CardType.Number:
+                 PlayCardEffect = PlayNumberEffect;
+                 break;
             case CardType.Skip:
                 PlayCardEffect = PlaySkipEffect;
                 break;
