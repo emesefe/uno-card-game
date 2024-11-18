@@ -72,30 +72,16 @@ public class Card : MonoBehaviour
 
    public void SetCardEffect()
    {
-        switch (_soCard.type)
+        PlayCardEffect = _soCard.type switch
         {
-            case CardType.Number:
-                 PlayCardEffect = PlayNumberEffect;
-                 break;
-            case CardType.Skip:
-                PlayCardEffect = PlaySkipEffect;
-                break;
-            case CardType.Invert:
-                PlayCardEffect = PlayInvertEffect;
-                break;
-            case CardType.Plus2:
-                PlayCardEffect = PlayPlus2Effect;
-                break;
-            case CardType.Plus4:
-                PlayCardEffect = PlayPlus4Effect;
-                break;
-            case CardType.ChangeColor:
-                PlayCardEffect = PlayChageColorEffect;
-                break;
-            default:
-                PlayCardEffect = null;
-                break;
-        }
+             CardType.Number => PlayNumberEffect,
+             CardType.Skip => PlaySkipEffect,
+             CardType.Invert => PlayInvertEffect,
+             CardType.Plus2 => PlayPlus2Effect,
+             CardType.Plus4 => PlayPlus4Effect,
+             CardType.ChangeColor => PlayChageColorEffect,
+             _ => throw new Exception($"Unknown card type {_soCard.type}")
+        };
    }
    
    public void PlayNumberEffect() 
