@@ -84,35 +84,35 @@ public class Card : MonoBehaviour
         };
    }
    
-   public void PlayNumberEffect() 
+   private void PlayNumberEffect() 
    {
         Debug.Log("Juego la carta Número");
    }
 
-   public void PlaySkipEffect() 
+   private void PlaySkipEffect() 
    {
         Debug.Log("Juego la carta Skip");
         GameManager.Instance.ChangeTurn();
    }
 
-   public void PlayInvertEffect() 
+   private void PlayInvertEffect() 
    {
         Debug.Log("Juego la carta Invert");
         GameManager.Instance.ChangeTurnOrder();
    }
 
-   public void PlayPlus2Effect() 
+   private void PlayPlus2Effect() 
    {
         Debug.Log("Juego la carta Plus2");
         GameManager.Instance.UpdateTotalCardsToDraw(2);
    }
 
-   public void PlayPlus4Effect() 
+   private void PlayPlus4Effect() 
    {
         Debug.Log("Juego la carta Plus4");
    }
 
-   public void PlayChageColorEffect() 
+   private void PlayChageColorEffect() 
    {
         Debug.Log("Juego la carta ChangeColor");
    }
