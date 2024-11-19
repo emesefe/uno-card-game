@@ -92,13 +92,9 @@ public class Player : MonoBehaviour
         
         if (isMainPlayer)
         {
-            Transform cardTransform = drewCard.transform;
-            // TODO: Hacer función cambiar escala de la carta
-            float prop = (float)visualCardWidth / Constants.CARD_WIDTH;
-            cardTransform.localScale = new Vector3(
-                visualCardWidth, prop * cardTransform.localScale.y, 1);
-            
+            drewCard.ChangeSize(visualCardWidth);
             drewCard.IsFaceDown(false);
+            
             ArrangePlayerHandCards();
         }
         else drewCard.HideCard();
@@ -288,6 +284,9 @@ public class Player : MonoBehaviour
         Debug.Log($"Activo? {enable}");
         foreach (Card card in hand)
         {
+            float cardAlpha = enable ? 1f : 0.1f;
+            card.ChangeCardAlpha(cardAlpha);
+            
             SelectableCard selectableCard = card.gameObject.GetComponent<SelectableCard>();
             selectableCard.UpdateCanSelect(enable);
         }

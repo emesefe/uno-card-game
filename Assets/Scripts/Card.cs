@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class Card : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class Card : MonoBehaviour
 
         symbolSpriteRenderer.sprite = soCard.sprite;
         cardSpriteRenderer.color = color;
+   }
+
+   public void ChangeCardAlpha(float alpha)
+   {
+        cardSpriteRenderer.DOFade(alpha, 0.5f);
    }
 
    public void ShowCard()
@@ -68,6 +74,20 @@ public class Card : MonoBehaviour
    {
         transform.SetParent(newParent);
         transform.localPosition = Vector3.zero;
+   }
+
+   public void ChangeSize(int newWidth, int newHeight = 0)
+   {
+        if (newHeight > 0)
+        {
+             transform.localScale = new Vector3(newWidth, newHeight, 1);
+             return;
+        }
+        
+        float prop = newWidth / transform.localScale.x;
+        Debug.Log($"New x = {newWidth} New y = {prop * transform.localScale.y}");
+        transform.localScale = new Vector3(
+             newWidth, prop * transform.localScale.y, 1);
    }
 
    public void SetCardEffect()

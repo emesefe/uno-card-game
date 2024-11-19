@@ -1296,7 +1296,9 @@ MonoBehaviour:
   confirmSelectionButton: {fileID: 51470852}
   player: {fileID: 1828412310}
   totalCardsToDraw: {fileID: 1824561620}
+  totalCardsToDrawRectTransform: {fileID: 1824561621}
   totalCardsToDrawText: {fileID: 1695111469}
+  totalCardsCanvasGroup: {fileID: 1824561624}
 --- !u!4 &1192627248
 Transform:
   m_ObjectHideFlags: 0

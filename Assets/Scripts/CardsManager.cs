@@ -117,8 +117,7 @@ public class CardsManager : MonoBehaviour
         
         card.ChangeParent(discardDeckTransform);
         
-        // TODO: Hacer función cambiar escala de la carta
-        card.gameObject.transform.localScale = new Vector3(Constants.CARD_WIDTH, Constants.CARD_HEIGHT, 1);
+        card.ChangeSize(Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
 
         card.SetupOrderInLayer(discardDeck.Count - 1);
 
