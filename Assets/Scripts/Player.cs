@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
         cardsManager.AddCardToDiscardDeck(card);
     }
     
+    // TODO: Completar esta función para que se devuelvan todas las cartas iguales
     public Card FindCardInHand(CardType cardType)
     {
         foreach (Card card in hand)
