@@ -51,7 +51,7 @@
     <ul>
         <li>- [x] SKIP -> Saltar turno</li>
         <li>- [x] INVERT -> Cambiar sentido de turnos</li>
-        <li>- [ ] PLUS2 -> Robar carta y saltar turno</li>
+        <li>- [x] PLUS2 -> Robar carta y saltar turno</li>
         <li>- [ ] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
         <li>- [ ] CHANGE_COLOR -> Cambiar de color</li>
     </ul>
@@ -118,15 +118,15 @@
         <li>- [ ] Añadir a panel de selector de color la opción random</li>
         <li>- [ ] Mostrar de qué jugador es el turno haciendo que el icono del jugador esté destacado (más grande, brillo, indicador sobre el icono)</li>
         <li>- [x] Mostrar la mano del jugador</li>
-        <li>- [ ] Si no es el turno del jugador, las cartas se ven más pequeñas e incluso más oscuras</li>
+        <li>- [x] Si no es el turno del jugador, las cartas se ven más oscuras</li>
         <li>- [x] Ajustar las cartas de la mano del jugador al espacio disponible y en función de la cantidad</li>
         <li>- [x] Botón de confirmar jugada</li>
         <li>- [x] Mostrar el mazo de robo</li>
-        <li>- [ ] Botón de robar carta</li>
+        <li>- [x] Botón de robar carta</li>
         <li>- [ ] Mostrar el mazo de descarte con un mínimo de 4 cartas</li>
         <li>- [ ] Mostrar el sentido del juego (horario o antihorario)</li>
         <li>- [ ] Cuando el sentido cambia, destacar el icono que representa el sentido del juego</li>
-        <li>- [ ] Mostrar, cuando se juegue un PLUS2 o un PLUS4 un acumulador con el total de cartas a robar</li>
+        <li>- [x] Mostrar, cuando se juegue un PLUS2 o un PLUS4 un acumulador con el total de cartas a robar</li>
         <li>- [ ] Mostrar el temporizador del juego</li>
         <li>- [ ] Mostrar icono del resto de jugadores con username y el total de cartas que tienen en su manos</li>
     </ul>
@@ -158,7 +158,7 @@
         <li>- [x] Añadir carta a la mano del jugador</li>
         <li>- [x] Eliminar carta de la mano del jugador</li>
         <li>- [x] Jugar una carta. En tu turno puedes jugar una o varias cartas (si son exactamente iguales en símbolo y color)</li>
-        <li>- [ ] Si el jugador es IA, utilizar corrutinas para que la jugada no sea immediata</li>
+        <li>- [x] Si el jugador es IA, utilizar corrutinas para que la jugada no sea immediata</li>
         <li>- [x] El jugador selecciona la carta o cartas a tirar con click izquierdo</li>
         <li>- [x] Validar si una carta se puede jugar. Se puede jugar una carta por símbolo (número o carta especial) o color</li>
         <li>- [x] Seleccionar una carta de la mano del jugador</li>
@@ -174,8 +174,8 @@
         <li>- [x] El jugador solamente puede robar si no tiene ninguna carta que poder jugar</li>
         <li>- [ ] Si el jugador quiere robar teniendo al menos una carta que poder jugar, sonará un SFX y se destacarán las cartas que se pueden jugar (deberes para vosotros)</li>
         <li>- [ ] En caso de que a un jugador le quede una sola carta, aparecerá un botón en un punto aleatorio de la pantalla, sonará un SFX y el jugador con una carta tiene que ser el primero en darle al botón. Si otro jugador es más rápido en darle al botón, el jugador al que le quedaba una carta deberá robar dos cartas y pierde el turno</li>
-        <li>- [ ] En el mazo de descarte se pueden acumular solamente PLUS2 infinitamente. Es decir, después de un PLUS2 el siguiente jugador puede tirar otro PLUS2 y librarse de robar, pero no puede tirar un PLUS4</li>
-        <li>- [ ] Si al jugador le tiran un PLUS2 y dispone de un PLUS2, tiene que tirarlo, no puede guardárselo</li>
+        <li>- [x] En el mazo de descarte se pueden acumular solamente PLUS2 infinitamente. Es decir, después de un PLUS2 el siguiente jugador puede tirar otro PLUS2 y librarse de robar, pero no puede tirar un PLUS4</li>
+        <li>- [x] Si al jugador le tiran un PLUS2 y dispone de un PLUS2, tiene que tirarlo, no puede guardárselo</li>
         <li>- [ ] En el mazo de descarte se pueden acumular solamente PLUS4 infinitamente. Es decir, después de un PLUS4 el siguiente jugador puede tirar otro PLUS4 y librarse de robar, pero no puede tirar un PLUS2</li>
         <li>- [ ] Si al jugador le tiran un PLUS4 y dispone de un PLUS4, tiene que tirarlo, no puede guardárselo</li>
         <li>- [ ] Si se salta un turno a un jugador por una carta SKIP, dicho jugador tendrá un icono de prohíbido sobre su icono de jugador. Si se trata del propio jugador el que está bloqueado, el botón de confirmar tendrá un icono de prohibido o estará deshabilitado</li>

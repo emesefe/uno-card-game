@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             {
                 if (currentPlayingPlayer.GetIsMainPlayer()) yield break;
                 
-                yield return new WaitForSeconds(10);
+                yield return new WaitForSeconds(1);
                 // Tengo que jugar el / los PLUS2 (del mismo color) 
                 // TODO: Qué pasa si cardPlus2ToPlay es null?
                 Card cardPlus2ToPlay = currentPlayingPlayer.FindCardInHand(CardType.Plus2);

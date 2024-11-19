@@ -1995,6 +1995,9 @@ MonoBehaviour:
   - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 2
     total: 1
+  - soCard: {fileID: 11400000, guid: 20126416743d74a4ea28504e218c5274, type: 2}
+    color: 4
+    total: 1
 --- !u!1 &1892682366
 GameObject:
   m_ObjectHideFlags: 0

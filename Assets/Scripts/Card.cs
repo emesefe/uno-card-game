@@ -85,9 +85,7 @@ public class Card : MonoBehaviour
         }
         
         float prop = newWidth / transform.localScale.x;
-        Debug.Log($"New x = {newWidth} New y = {prop * transform.localScale.y}");
-        transform.localScale = new Vector3(
-             newWidth, prop * transform.localScale.y, 1);
+        transform.localScale = new Vector3(newWidth, prop * transform.localScale.y, 1);
    }
 
    public void SetCardEffect()
