@@ -105,6 +105,7 @@ public class Card : MonoBehaviour
    {
         Debug.Log("Juego la carta Plus2");
         GameManager.Instance.UpdateTotalCardsToDraw(2);
+        UIManager.Instance.ShowTotalCardsToDraw(1f);
    }
 
    private void PlayPlus4Effect() 

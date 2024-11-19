@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
         }
         
         cardsManager.AddCardToDiscardDeck(cardsManager.DrawCardFromDrawDeck());
+        
+        UIManager.Instance.HideTotalCardsToDraw();
     }
 
     public CardsManager GetCardsManager()
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 totalCardsToDraw = 0;
+                UIManager.Instance.HideTotalCardsToDraw(2f);
             }
             else
             {
@@ -136,6 +139,8 @@ public class GameManager : MonoBehaviour
     public void UpdateTotalCardsToDraw(int cardsToDraw)
     {
         totalCardsToDraw += cardsToDraw;
+        UIManager.Instance.UpdateTotalCardsToDraw(totalCardsToDraw);
+        Debug.Log($"Se tienen que robar: {totalCardsToDraw} cartas");
     }
 
     public int GetTotalCardsToDraw()
