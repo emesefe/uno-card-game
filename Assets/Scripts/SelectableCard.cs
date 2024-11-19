@@ -17,7 +17,7 @@ public class SelectableCard : MonoBehaviour
 
     private float animationTime = 0.25f;
 
-
+    private bool canSelect = true; // TODO: Esto hay que cambiarlo porque el turno inicial es aleatorio
 
     public void SetOriginalPosition(Vector3 position)
     {
@@ -46,6 +46,8 @@ public class SelectableCard : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!canSelect) return; 
+        
         if (player.CanPlayCard(card) && !seletectedCard)
         {
             if (player.GetTotalSelectedCards() <= 0 || CardsManager.AreTwoCardsEqual(card, player.GetSelectedCard()))
@@ -70,6 +72,8 @@ public class SelectableCard : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (!canSelect) return; 
+        
         transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, animationTime);
         transform.DOScale(originalScale +  increaseScaleAmount * Vector3.one, animationTime);
         card.SetupOrderInLayer(player.GetPlayerHandCards().Count);
@@ -77,11 +81,18 @@ public class SelectableCard : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (!canSelect) return;
+        
         if (!seletectedCard)
         {
             transform.DOMove(originalPosition, animationTime);
             transform.DOScale(originalScale, animationTime);
             card.SetupOrderInLayer(originalIndex);
         }
+    }
+
+    public void UpdateCanSelect(bool isSelectionAvailable)
+    {
+        canSelect = isSelectionAvailable;
     }
 }

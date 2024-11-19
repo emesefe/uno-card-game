@@ -1,22 +1,25 @@
 using UnityEngine;
+using System;
 using System.Collections;
+
+public enum Turn {
+    Player01,
+    Player02,
+    Player03,
+    Player04,
+    Player05,
+    Player06,
+    Player07,
+    Player08,
+    Player09,
+    Player10,
+}
 
 public class GameManager : MonoBehaviour
 {
-    public enum Turn {
-        Player01,
-        Player02,
-        Player03,
-        Player04,
-        Player05,
-        Player06,
-        Player07,
-        Player08,
-        Player09,
-        Player10,
-    }
-
     public static GameManager Instance;
+    
+    public static event Action<Turn> OnTurnChanged;
 
     [SerializeField] private Player[] players;
     private int totalPlayingPlayers = 2;
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour
         }
         
         currentTurn = (Turn)currentTurnIdx;
+        
+        OnTurnChanged?.Invoke(currentTurn);
         Debug.Log($"Ahora es el turno de {currentTurnIdx}");
 
         StartCoroutine(CheckIfPlus2OrPlus4WasPlayed());
@@ -97,10 +102,10 @@ public class GameManager : MonoBehaviour
     {
         if (totalCardsToDraw > 0)
         {
-            Player currentPlayer = players[(int)currentTurn];
-            Debug.Log($"currentPlayer: {currentPlayer}");
+            Player currentPlayingPlayer = players[(int)currentTurn];
+            Debug.Log($"currentPlayer: {currentPlayingPlayer}");
             
-            bool hasToDraw = !currentPlayer.CanPlayAnyCard();
+            bool hasToDraw = !currentPlayingPlayer.CanPlayAnyCard();
             Debug.Log($"Tengo que robar? {hasToDraw}");
 
             if (hasToDraw)
@@ -108,7 +113,7 @@ public class GameManager : MonoBehaviour
                 // El nuevo jugador tiene que robar cartas
                 for (int i = 0; i < totalCardsToDraw; i++)
                 {
-                    currentPlayer.DrawCardToPlayerHand();
+                    currentPlayingPlayer.DrawCardToPlayerHand();
                 }
 
                 totalCardsToDraw = 0;
@@ -116,13 +121,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (currentPlayer.GetIsMainPlayer()) yield break;
+                if (currentPlayingPlayer.GetIsMainPlayer()) yield break;
                 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(10);
                 // Tengo que jugar el / los PLUS2 (del mismo color) 
                 // TODO: Qué pasa si cardPlus2ToPlay es null?
-                Card cardPlus2ToPlay = currentPlayer.FindCardInHand(CardType.Plus2);
-                currentPlayer.PlayCard(cardPlus2ToPlay);
+                Card cardPlus2ToPlay = currentPlayingPlayer.FindCardInHand(CardType.Plus2);
+                currentPlayingPlayer.PlayCard(cardPlus2ToPlay);
                 
             }
             
@@ -146,5 +151,10 @@ public class GameManager : MonoBehaviour
     public int GetTotalCardsToDraw()
     {
         return totalCardsToDraw;
+    }
+
+    public Player GetCurrentPlayingPlayer()
+    {
+        return players[(int)currentTurn];
     }
 }

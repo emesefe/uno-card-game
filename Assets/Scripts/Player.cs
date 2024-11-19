@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,28 @@ public class Player : MonoBehaviour
     {
         cardsManager = FindObjectOfType<CardsManager>();
     }
+
+    private void OnEnable()
+    {
+        GameManager.OnTurnChanged += GameManager_OnTurnChanged;
+    }
     
+    private void OnDisable()
+    {
+        GameManager.OnTurnChanged -= GameManager_OnTurnChanged;
+    }
+    
+    private void GameManager_OnTurnChanged(Turn currentTurn)
+    {
+        Player currentPlayingPlayer = GameManager.Instance.GetCurrentPlayingPlayer();
+        bool isCurrentPlayingPlayer = currentPlayingPlayer == this;
+
+        if (isMainPlayer)
+        {
+            EnableSelectableCards(isCurrentPlayingPlayer);
+        }
+    }
+
     private void AddCardToPlayerHand(Card card)
     {
         hand.Add(card);
@@ -259,6 +281,16 @@ public class Player : MonoBehaviour
 
         ClearSelectedCards();
         ArrangePlayerHandCards();
+    }
+
+    private void EnableSelectableCards(bool enable)
+    {
+        Debug.Log($"Activo? {enable}");
+        foreach (Card card in hand)
+        {
+            SelectableCard selectableCard = card.gameObject.GetComponent<SelectableCard>();
+            selectableCard.UpdateCanSelect(enable);
+        }
     }
 
     #endregion

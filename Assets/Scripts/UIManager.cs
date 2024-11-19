@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
     {
         if (shakeTime > 0)
         {
-            Debug.Log("Shaking time: " + shakeTime);
             totalCardsToDrawRectTransform.DOShakeAnchorPos(shakeTime, 20);
             yield return new WaitForSeconds(shakeTime);
         }
