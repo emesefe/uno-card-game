@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 totalCardsToDraw = 0;
-                UIManager.Instance.HideTotalCardsToDraw(2f);
+                UIManager.Instance.HideTotalCardsToDraw(2f, 2f);
             }
             else
             {

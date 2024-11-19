@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Player player;
     
     [SerializeField] private GameObject totalCardsToDraw;
+    [SerializeField] private RectTransform totalCardsToDrawRectTransform;
     [SerializeField] private TextMeshProUGUI totalCardsToDrawText;
     [SerializeField] private CanvasGroup totalCardsCanvasGroup;
 
@@ -45,17 +46,24 @@ public class UIManager : MonoBehaviour
         totalCardsCanvasGroup.DOFade(1, fadeTime);
     }
 
-    private IEnumerator HideTotalCardsToDrawCoroutine(float fadeTime = 0)
+    private IEnumerator HideTotalCardsToDrawCoroutine(float fadeTime = 0, float shakeTime = 0)
     {
+        if (shakeTime > 0)
+        {
+            Debug.Log("Shaking time: " + shakeTime);
+            totalCardsToDrawRectTransform.DOShakeAnchorPos(shakeTime, 20);
+            yield return new WaitForSeconds(shakeTime);
+        }
+        
         totalCardsCanvasGroup.DOFade(0, fadeTime);
         yield return new WaitForSeconds(fadeTime);
         
         totalCardsToDraw.SetActive(false);
     }
 
-    public void HideTotalCardsToDraw(float fadeTime = 0)
+    public void HideTotalCardsToDraw(float fadeTime = 0, float shakeTime = 0)
     {
-        StartCoroutine(HideTotalCardsToDrawCoroutine(fadeTime));
+        StartCoroutine(HideTotalCardsToDrawCoroutine(fadeTime, shakeTime));
     }
 
     public void UpdateTotalCardsToDraw(int cardsToDraw)
