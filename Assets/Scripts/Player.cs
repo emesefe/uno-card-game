@@ -104,9 +104,10 @@ public class Player : MonoBehaviour
     {
         Card lastPlayedCard = CardsManager.Instance.GetLastPlayedCard();
 
-        if (GameManager.Instance.GetTotalCardsToDraw() > 0 && lastPlayedCard.GetCardType() == CardType.Plus2)
+        if (GameManager.Instance.GetTotalCardsToDraw() > 0) 
         {
-            return cardToPlay.GetCardType() == CardType.Plus2;
+            if (lastPlayedCard.GetCardType() == CardType.Plus2) return cardToPlay.GetCardType() == CardType.Plus2;
+            if (lastPlayedCard.GetCardType() == CardType.Plus4) return cardToPlay.GetCardType() == CardType.Plus4;
         }
         
         // TODO: Faltan casos especiales que dependen de las cartas especiales
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
             return true;
         }
         
-        if (cardToPlay.GetColor() == lastPlayedCard.GetColor()) 
+        if (cardToPlay.GetColor() == GameManager.Instance.GetCurrentColor()) 
         {
             return true;
         }
@@ -135,6 +136,8 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        
+        
 
         return false;
     }
@@ -147,6 +150,16 @@ public class Player : MonoBehaviour
         }
 
         return false;
+    }
+    
+    public CardType? GetFirstCardThatCanBePlayed() 
+    {
+        foreach (Card card in hand)
+        {
+            if (CanPlayCard(card)) return card.GetCardType();
+        }
+
+        return null;
     }
 
     public List<Card> GetPlayerHandCards()

@@ -100,7 +100,6 @@ public class UIManager : MonoBehaviour
         changeColorButtons[i].onClick.AddListener(() =>
         {
             GameManager.Instance.ChangeCurrentColor((CardColor)i);
-            Debug.Log($"Cambio al color {(CardColor)i} index {i}");
             HideChangeColorPanel();
         });
     }

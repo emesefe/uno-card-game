@@ -149,16 +149,24 @@ public class Card : MonoBehaviour
    {
         Debug.Log("Juego la carta Plus4");
         GameManager.Instance.UpdateTotalCardsToDraw(4);
-        UIManager.Instance.ShowChangeColorPanel();
         
-        
-        // GameManager.Instance.ChangeCurrentColor();
-        // UIManager.Instance.ShowTotalCardsToDraw(1f);
+        // TODO: Diferenciar si juega el Main Player o si juega otro jugador
+        if (GameManager.Instance.IsCurrentPlayingPlayerMainPlayer())
+        { 
+             UIManager.Instance.ShowChangeColorPanel();
+        }
+        else
+        {
+             // TODO: Elegir color aleatorio
+             GameManager.Instance.ChangeCurrentColor(CardColor.Blue);
+        }
    }
 
    private void PlayChageColorEffect() 
    {
         Debug.Log("Juego la carta ChangeColor");
+        
+        // TODO: Diferenciar si juega el Main Player o si juega otro jugador
    }
    
    public Color GetColorFromCardColor(CardColor cardColor)

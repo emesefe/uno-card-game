@@ -127,10 +127,10 @@ public class GameManager : MonoBehaviour
                 if (currentPlayingPlayer.GetIsMainPlayer()) yield break;
                 
                 yield return new WaitForSeconds(5);
-                // Tengo que jugar el / los PLUS2 (del mismo color) 
-                // TODO: Qué pasa si cardPlus2ToPlay es null?
-                Card cardPlus2ToPlay = currentPlayingPlayer.FindCardInHand(CardType.Plus2);
-                currentPlayingPlayer.PlayCard(cardPlus2ToPlay);
+                // TODO: Gestionar esto mejor
+                CardType typeToPlay = (CardType)currentPlayingPlayer.GetFirstCardThatCanBePlayed();
+                Card cardToPlay = currentPlayingPlayer.FindCardInHand(typeToPlay);
+                currentPlayingPlayer.PlayCard(cardToPlay);
                 
             }
             
@@ -161,10 +161,21 @@ public class GameManager : MonoBehaviour
         return players[(int)currentTurn];
     }
 
+    public bool IsCurrentPlayingPlayerMainPlayer()
+    {
+        return currentTurn == Turn.Player01;
+    }
+
     public void ChangeCurrentColor(CardColor color)
     {
         currentColor = color;
+        Debug.Log($"Cambio al color {color}");
         colorHasBeenChanged = true;
+    }
+
+    public CardColor GetCurrentColor()
+    {
+        return currentColor;
     }
 
     public bool GetColorHasBeenChanged()
