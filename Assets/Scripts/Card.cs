@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public enum CardColor 
 {
@@ -15,9 +16,9 @@ public enum CardColor
 public class Card : MonoBehaviour
 {
    private SOCard _soCard;
-   private CardColor _cardColor;
+   private CardColor _color;
    
-   private Dictionary<CardColor, Color> cardColors = new Dictionary<CardColor, Color>() 
+   public static readonly Dictionary<CardColor, Color> CardColors = new Dictionary<CardColor, Color>() 
    {
         {CardColor.Red, Constants.RED_COLOR},
         {CardColor.Green, Constants.GREEN_COLOR},
@@ -33,8 +34,7 @@ public class Card : MonoBehaviour
    [SerializeField] private SpriteRenderer backSpriteRenderer;
 
    private bool _isFaceDown;
-
-
+   
    public Action PlayCardEffect;
 
    public void SetupOrderInLayer(int idx)
@@ -47,10 +47,10 @@ public class Card : MonoBehaviour
    public void SetupCardVisuals(SOCard soCard, CardColor color)
    {
         _soCard = soCard;
-        _cardColor = color;
+        _color = color;
 
         symbolSpriteRenderer.sprite = soCard.sprite;
-        cardSpriteRenderer.color = cardColors[color];
+        cardSpriteRenderer.color = CardColors[color];
    }
 
    public void ChangeCardAlpha(float alpha)
@@ -86,7 +86,7 @@ public class Card : MonoBehaviour
 
    public CardColor GetColor()
    {
-        return _cardColor;
+        return _color;
    }
 
    public void ChangeParent(Transform newParent)
@@ -149,23 +149,33 @@ public class Card : MonoBehaviour
    {
         Debug.Log("Juego la carta Plus4");
         GameManager.Instance.UpdateTotalCardsToDraw(4);
-        
-        // TODO: Diferenciar si juega el Main Player o si juega otro jugador
-        if (GameManager.Instance.IsCurrentPlayingPlayerMainPlayer())
-        { 
-             UIManager.Instance.ShowChangeColorPanel();
-        }
-        else
-        {
-             // TODO: Elegir color aleatorio
-             GameManager.Instance.ChangeCurrentColor(CardColor.Blue);
-        }
+        UIManager.Instance.ShowTotalCardsToDraw(1f);
+        ChangeColor();
    }
 
    private void PlayChageColorEffect() 
    {
         Debug.Log("Juego la carta ChangeColor");
-        
-        // TODO: Diferenciar si juega el Main Player o si juega otro jugador
+        ChangeColor();
+   }
+
+   private void ChangeColor()
+   {
+        if (GameManager.Instance.IsCurrentPlayerMainPlayer())
+        { 
+             UIManager.Instance.ShowChangeColorPanel();
+        }
+        else
+        {
+             CardColor randomColor = ChooseRandomColor();
+             GameManager.Instance.ChangeCurrentColor(randomColor);
+             UIManager.Instance.ShowCurrentColorText(randomColor, 1);
+        }
+   }
+
+   private CardColor ChooseRandomColor()
+   {
+        int randomIndex = Random.Range(0, Constants.TOTAL_COLORS);
+        return (CardColor)randomIndex;
    }
 }

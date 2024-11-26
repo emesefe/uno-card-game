@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     
     private void GameManager_OnTurnChanged(Turn currentTurn)
     {
-        Player currentPlayingPlayer = GameManager.Instance.GetCurrentPlayingPlayer();
+        Player currentPlayingPlayer = GameManager.Instance.GetCurrentPlayer();
         bool isCurrentPlayingPlayer = currentPlayingPlayer == this;
 
         if (isMainPlayer)
@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 
     #region MAIN PLAYER
 
-    public bool GetIsMainPlayer()
+    public bool IsMainPlayer()
     {
         return isMainPlayer;
     }

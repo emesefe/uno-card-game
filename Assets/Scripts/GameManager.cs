@@ -67,11 +67,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.HideTotalCardsToDraw();
     }
 
-    public CardsManager GetCardsManager()
-    {
-        return cardsManager;
-    }
-
     public void ChangeTurn(int turnsToChange = 1)
     {
         int currentTurnIdx = (int)currentTurn; 
@@ -96,7 +91,6 @@ public class GameManager : MonoBehaviour
         currentTurn = (Turn)currentTurnIdx;
         
         OnTurnChanged?.Invoke(currentTurn);
-        Debug.Log($"Ahora es el turno de {currentTurnIdx}");
 
         StartCoroutine(CheckIfPlus2OrPlus4WasPlayed());
     }
@@ -105,18 +99,17 @@ public class GameManager : MonoBehaviour
     {
         if (totalCardsToDraw > 0)
         {
-            Player currentPlayingPlayer = players[(int)currentTurn];
-            Debug.Log($"currentPlayer: {currentPlayingPlayer}");
+            Player currentPlayer = players[(int)currentTurn];
+            Debug.Log($"currentPlayer: {currentPlayer}");
             
-            bool hasToDraw = !currentPlayingPlayer.CanPlayAnyCard();
+            bool hasToDraw = !currentPlayer.CanPlayAnyCard();
             Debug.Log($"Tengo que robar? {hasToDraw}");
 
             if (hasToDraw)
             {
-                // El nuevo jugador tiene que robar cartas
                 for (int i = 0; i < totalCardsToDraw; i++)
                 {
-                    currentPlayingPlayer.DrawCardToPlayerHand();
+                    currentPlayer.DrawCardToPlayerHand();
                 }
 
                 totalCardsToDraw = 0;
@@ -124,13 +117,16 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (currentPlayingPlayer.GetIsMainPlayer()) yield break;
+                if (IsCurrentPlayerMainPlayer()) yield break;
                 
                 yield return new WaitForSeconds(5);
-                // TODO: Gestionar esto mejor
-                CardType typeToPlay = (CardType)currentPlayingPlayer.GetFirstCardThatCanBePlayed();
-                Card cardToPlay = currentPlayingPlayer.FindCardInHand(typeToPlay);
-                currentPlayingPlayer.PlayCard(cardToPlay);
+                
+                CardType? typeToPlay = currentPlayer.GetFirstCardThatCanBePlayed();
+                if (typeToPlay.HasValue)
+                {
+                    Card cardToPlay = currentPlayer.FindCardInHand(typeToPlay.Value);
+                    currentPlayer.PlayCard(cardToPlay);
+                }
                 
             }
             
@@ -156,21 +152,24 @@ public class GameManager : MonoBehaviour
         return totalCardsToDraw;
     }
 
-    public Player GetCurrentPlayingPlayer()
+    public Player GetCurrentPlayer()
     {
         return players[(int)currentTurn];
     }
 
-    public bool IsCurrentPlayingPlayerMainPlayer()
+    public bool IsCurrentPlayerMainPlayer()
     {
-        return currentTurn == Turn.Player01;
+        return GetCurrentPlayer().IsMainPlayer();
     }
 
     public void ChangeCurrentColor(CardColor color)
     {
         currentColor = color;
         Debug.Log($"Cambio al color {color}");
+        
         colorHasBeenChanged = true;
+        
+        UIManager.Instance.HideCurrentColorText(3f);
     }
 
     public CardColor GetCurrentColor()

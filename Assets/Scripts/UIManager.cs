@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject changeColorPanel;
     [SerializeField] private Button[] changeColorButtons;
+    [SerializeField] private TextMeshProUGUI currentColorText;
 
     private void Awake()
     {
@@ -30,7 +31,11 @@ public class UIManager : MonoBehaviour
         Instance = this;
         
         InitializeConfirmSelectionButton();
+        
+        HideChangeColorPanel();
         InitializeChangeColorButtons();
+        
+        HideCurrentColorText();
     }
 
     private void InitializeConfirmSelectionButton()
@@ -49,9 +54,9 @@ public class UIManager : MonoBehaviour
             {
                 GameManager.Instance.ChangeCurrentColor(cardColor);
                 HideChangeColorPanel();
+                ShowCurrentColorText(cardColor);
             });
         }
-        HideChangeColorPanel();
     }
 
     public void EnableConfirmSelectionButton(bool enable)
@@ -94,8 +99,30 @@ public class UIManager : MonoBehaviour
         changeColorPanel.SetActive(true);
     }
 
-    public void HideChangeColorPanel()
+    private void HideChangeColorPanel()
     {
         changeColorPanel.SetActive(false);
+    }
+
+    public void ShowCurrentColorText(CardColor color, float fadeTime = 0)
+    {
+        currentColorText.gameObject.SetActive(true);
+        currentColorText.color = Card.CardColors[color];
+        currentColorText.text = color.ToString();
+        
+        currentColorText.DOFade(1, fadeTime);
+    }
+    
+    private IEnumerator HideCurrentColorTextCoroutine(float fadeTime = 0)
+    {
+        currentColorText.DOFade(0, fadeTime);
+        yield return new WaitForSeconds(fadeTime);
+        
+        currentColorText.gameObject.SetActive(false);
+    }
+    
+    public void HideCurrentColorText(float fadeTime = 0)
+    {
+        StartCoroutine(HideCurrentColorTextCoroutine(fadeTime));
     }
 }
