@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -159,6 +159,11 @@ public class Player : MonoBehaviour
         card.PlayCardEffect();
         RemoveCardFromPlayerHand(card);  
         cardsManager.AddCardToDiscardDeck(card);
+
+        if (card.GetColor() != CardColor.Black) // TODO: Crear función
+        {
+            GameManager.Instance.ChangeCurrentColor(card.GetColor());
+        }
     }
     
     // TODO: Completar esta función para que se devuelvan todas las cartas iguales
@@ -259,9 +264,9 @@ public class Player : MonoBehaviour
         selectedCards.Clear();
     }
 
-    public void PlaySelectedCards()
+    public IEnumerator PlaySelectedCards()
     {
-        if (selectedCards.Count <= 0) return;
+        if (selectedCards.Count <= 0) yield break;
         
         foreach (Card card in selectedCards)
         {
@@ -270,6 +275,9 @@ public class Player : MonoBehaviour
 
             PlayCard(card);
         }
+        
+        yield return new WaitUntil(GameManager.Instance.GetColorHasBeenChanged);
+        GameManager.Instance.SetColorHasBeenChanged(false);
         
         GameManager.Instance.ChangeTurn();
         

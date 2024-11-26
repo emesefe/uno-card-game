@@ -1,11 +1,30 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
+
+public enum CardColor 
+{
+     Red,
+     Green,
+     Blue,
+     Yellow,
+     Black
+}
 
 public class Card : MonoBehaviour
 {
    private SOCard _soCard;
-   private Color _color;
+   private CardColor _cardColor;
+   
+   private Dictionary<string, Color> cardColors = new Dictionary<string, Color>() 
+   {
+        {"Red", Constants.RED_COLOR},
+        {"Green", Constants.GREEN_COLOR},
+        {"Blue", Constants.BLUE_COLOR},
+        {"Yellow", Constants.YELLOW_COLOR},
+        {"Black", Constants.BLACK_COLOR}
+   };
 
    [SerializeField] private SpriteRenderer cardSpriteRenderer;
    [SerializeField] private SpriteRenderer symbolSpriteRenderer;
@@ -25,13 +44,13 @@ public class Card : MonoBehaviour
         backSpriteRenderer.sortingOrder = 3 * idx + 2; 
    }
 
-   public void SetupCardVisuals(SOCard soCard, Color color)
+   public void SetupCardVisuals(SOCard soCard, CardColor color)
    {
         _soCard = soCard;
-        _color = color;
+        _cardColor = color;
 
         symbolSpriteRenderer.sprite = soCard.sprite;
-        cardSpriteRenderer.color = color;
+        cardSpriteRenderer.color = cardColors[color.ToString()];
    }
 
    public void ChangeCardAlpha(float alpha)
@@ -65,9 +84,9 @@ public class Card : MonoBehaviour
         return _soCard.digit;
    }
 
-   public Color GetColor()
+   public CardColor GetColor()
    {
-        return _color;
+        return _cardColor;
    }
 
    public void ChangeParent(Transform newParent)
@@ -129,10 +148,21 @@ public class Card : MonoBehaviour
    private void PlayPlus4Effect() 
    {
         Debug.Log("Juego la carta Plus4");
+        GameManager.Instance.UpdateTotalCardsToDraw(4);
+        UIManager.Instance.ShowChangeColorPanel();
+        
+        
+        // GameManager.Instance.ChangeCurrentColor();
+        // UIManager.Instance.ShowTotalCardsToDraw(1f);
    }
 
    private void PlayChageColorEffect() 
    {
         Debug.Log("Juego la carta ChangeColor");
+   }
+   
+   public Color GetColorFromCardColor(CardColor cardColor)
+   {
+        return cardColors[cardColor.ToString()];
    }
 }

@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalCardsToDrawText;
     [SerializeField] private CanvasGroup totalCardsCanvasGroup;
 
+    [SerializeField] private GameObject changeColorPanel;
+    [SerializeField] private Button[] changeColorButtons;
+
     private void Awake()
     {
         if (Instance != null)
@@ -27,11 +30,13 @@ public class UIManager : MonoBehaviour
         Instance = this;
         
         InitializeConfirmSelectionButton();
+        InitializeChangeColorButtons();
     }
 
     private void InitializeConfirmSelectionButton()
     {
-        confirmSelectionButton.onClick.AddListener(player.PlaySelectedCards);
+        confirmSelectionButton.onClick.AddListener(() =>
+            StartCoroutine(player.PlaySelectedCards()));
         EnableConfirmSelectionButton(false);
     }
 
@@ -68,5 +73,35 @@ public class UIManager : MonoBehaviour
     public void UpdateTotalCardsToDraw(int cardsToDraw)
     {
         totalCardsToDrawText.text = cardsToDraw.ToString();
+    }
+
+    public void ShowChangeColorPanel()
+    {
+        changeColorPanel.SetActive(true);
+    }
+
+    public void HideChangeColorPanel()
+    {
+        changeColorPanel.SetActive(false);
+    }
+
+    private void InitializeChangeColorButtons()
+    {
+        for (int i = 0; i < changeColorButtons.Length; i++)
+        {
+            ChangeColorFunction(i);
+        }
+        HideChangeColorPanel();
+    }
+
+    private void ChangeColorFunction(int i)
+    {
+        // TODO: Investigar por qué no funciona del otro modo
+        changeColorButtons[i].onClick.AddListener(() =>
+        {
+            GameManager.Instance.ChangeCurrentColor((CardColor)i);
+            Debug.Log($"Cambio al color {(CardColor)i} index {i}");
+            HideChangeColorPanel();
+        });
     }
 }

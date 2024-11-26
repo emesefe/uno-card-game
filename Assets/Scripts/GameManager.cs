@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     private int totalCardsToDraw;
 
+    private CardColor currentColor;
+    private bool colorHasBeenChanged;
+
     private void Awake()
     {
         if (Instance != null)
@@ -123,7 +126,7 @@ public class GameManager : MonoBehaviour
             {
                 if (currentPlayingPlayer.GetIsMainPlayer()) yield break;
                 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(5);
                 // Tengo que jugar el / los PLUS2 (del mismo color) 
                 // TODO: Qué pasa si cardPlus2ToPlay es null?
                 Card cardPlus2ToPlay = currentPlayingPlayer.FindCardInHand(CardType.Plus2);
@@ -156,5 +159,21 @@ public class GameManager : MonoBehaviour
     public Player GetCurrentPlayingPlayer()
     {
         return players[(int)currentTurn];
+    }
+
+    public void ChangeCurrentColor(CardColor color)
+    {
+        currentColor = color;
+        colorHasBeenChanged = true;
+    }
+
+    public bool GetColorHasBeenChanged()
+    {
+        return colorHasBeenChanged;
+    }
+
+    public void SetColorHasBeenChanged(bool hasBeenChanged)
+    {
+        colorHasBeenChanged = hasBeenChanged;
     }
 }

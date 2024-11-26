@@ -12,24 +12,6 @@ public class CardsManager : MonoBehaviour
     [SerializeField] private Transform drawDeckTransform;
     [SerializeField] private Transform discardDeckTransform;
 
-    public enum CardColor 
-    {
-        Red,
-        Green,
-        Blue,
-        Yellow,
-        Black
-    }
-
-    private Dictionary<string, Color> cardColors = new Dictionary<string, Color>() 
-    {
-        {"Red", Constants.RED_COLOR},
-        {"Green", Constants.GREEN_COLOR},
-        {"Blue", Constants.BLUE_COLOR},
-        {"Yellow", Constants.YELLOW_COLOR},
-        {"Black", Constants.BLACK_COLOR}
-    };
-
     [SerializeField] private List<Card> drawDeck;
     [SerializeField] private List<Card> discardDeck;
 
@@ -44,7 +26,7 @@ public class CardsManager : MonoBehaviour
     }
 
     // TODO: When finished with testing, turn this function back to private
-    public Card CreateCard(SOCard soCard, Color color, int idx)
+    public Card CreateCard(SOCard soCard, CardColor color, int idx)
     {
         GameObject newCard = Instantiate(cardPrefab);
 
@@ -70,7 +52,7 @@ public class CardsManager : MonoBehaviour
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    newCard = CreateCard(soCard, GetColorFromCardColor(CardColor.Black), layer);
+                    newCard = CreateCard(soCard, CardColor.Black, layer);
                     newCard.IsFaceDown(true);   
                     layer++;
                 }
@@ -80,7 +62,7 @@ public class CardsManager : MonoBehaviour
                 for (int i = 0; i < 8; i++)
                 {
                     CardColor color = (CardColor)(i % 4);
-                    newCard = CreateCard(soCard, GetColorFromCardColor(color), layer);
+                    newCard = CreateCard(soCard, color, layer);
                     newCard.IsFaceDown(true);   
                     layer++;
                 }
@@ -141,10 +123,5 @@ public class CardsManager : MonoBehaviour
         if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
 
         return true;
-    }
-
-    public Color GetColorFromCardColor(CardColor cardColor)
-    {
-        return cardColors[cardColor.ToString()];
     }
 }

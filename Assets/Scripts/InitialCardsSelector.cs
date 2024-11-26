@@ -5,7 +5,7 @@ using UnityEngine;
 public class InitialCard
 {
     public SOCard soCard;
-    public CardsManager.CardColor color;
+    public CardColor color;
     public int total;
 }
 
@@ -24,7 +24,7 @@ public class InitialCardsSelector : MonoBehaviour
             for (int i = 0; i < initialCard.total; i++)
             {
                 Card card = CardsManager.Instance.CreateCard(initialCard.soCard, 
-                    CardsManager.Instance.GetColorFromCardColor(initialCard.color), cardIdx);
+                    initialCard.color, cardIdx);
                 player.DrawCardToPlayerHand(card);
                 cardIdx++;
             }
