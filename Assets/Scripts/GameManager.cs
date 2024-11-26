@@ -17,6 +17,8 @@ public enum Turn {
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private SOCard soCard;
+    
     public static GameManager Instance;
     
     public static event Action<Turn> OnTurnChanged;
@@ -26,9 +28,7 @@ public class GameManager : MonoBehaviour
 
     private Turn currentTurn;
     private bool turnOrderClockwise;
-
-    private CardsManager cardsManager;
-
+    
     private int totalCardsToDraw;
 
     private CardColor currentColor;
@@ -47,12 +47,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentTurn = Turn.Player01;
-
-        cardsManager = FindObjectOfType<CardsManager>();
         
         // Inicializar partida
-        cardsManager.CreateDrawDeck();
-        cardsManager.ShuffleDeck();
+        CardsManager.Instance.CreateDrawDeck();
+        CardsManager.Instance.ShuffleDeck();
         
         turnOrderClockwise = true;
         totalCardsToDraw = 0;
@@ -61,10 +59,17 @@ public class GameManager : MonoBehaviour
         {
             player.InitializePlayerHand();
         }
+
+        Card firstPlayedCard = CardsManager.Instance.DrawCardFromDrawDeck();
+        CardsManager.Instance.AddCardToDiscardDeck(firstPlayedCard);
         
-        cardsManager.AddCardToDiscardDeck(cardsManager.DrawCardFromDrawDeck());
+        if (!firstPlayedCard.IsPlus4OrChangeColor()) UIManager.Instance.HideCurrentColorText();
         
-        UIManager.Instance.HideTotalCardsToDraw();
+        else {
+            CardColor randomCardColor = CardColors.ChooseRandomColor();
+            UIManager.Instance.ShowCurrentColorText(randomCardColor);
+            ChangeCurrentColor(randomCardColor);
+        }
     }
 
     public void ChangeTurn(int turnsToChange = 1)

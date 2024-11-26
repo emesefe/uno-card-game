@@ -1485,6 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c7ecd2a156444cd825a5cf2b67fc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soCard: {fileID: 11400000, guid: 20126416743d74a4ea28504e218c5274, type: 2}
   players:
   - {fileID: 1828412310}
   - {fileID: 1375616332}
@@ -2131,8 +2132,8 @@ MonoBehaviour:
   - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 1
     total: 1
-  - soCard: {fileID: 11400000, guid: d7f4854edda3d4833a7ec25ac675f49c, type: 2}
-    color: 2
+  - soCard: {fileID: 11400000, guid: b7c654e22db604b5abd823664b0726da, type: 2}
+    color: 4
     total: 1
   - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
     color: 3

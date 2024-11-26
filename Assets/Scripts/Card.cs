@@ -25,7 +25,7 @@ public class Card : MonoBehaviour
         symbolSpriteRenderer.sortingOrder = 3 * idx + 1;
         backSpriteRenderer.sortingOrder = 3 * idx + 2; 
    }
-
+   
    public void SetVisuals(SOCard soCard, CardColor color)
    {
         _soCard = soCard;
@@ -59,6 +59,11 @@ public class Card : MonoBehaviour
    public CardType GetCardType()
    {
         return _soCard.type;
+   }
+
+   public bool IsPlus4OrChangeColor()
+   {
+        return _soCard.type == CardType.Plus4 || _soCard.type == CardType.ChangeColor;
    }
 
    public int GetCardDigit()

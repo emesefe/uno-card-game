@@ -32,10 +32,10 @@ public class UIManager : MonoBehaviour
         
         InitializeConfirmSelectionButton();
         
+        HideTotalCardsToDraw();
+        
         HideChangeColorPanel();
         InitializeChangeColorButtons();
-        
-        HideCurrentColorText();
     }
 
     private void InitializeConfirmSelectionButton()
@@ -123,6 +123,7 @@ public class UIManager : MonoBehaviour
     
     public void HideCurrentColorText(float fadeTime = 0)
     {
+        Debug.Log("Desactivo");
         StartCoroutine(HideCurrentColorTextCoroutine(fadeTime));
     }
 }
