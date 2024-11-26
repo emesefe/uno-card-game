@@ -243,7 +243,7 @@ public class Player : MonoBehaviour
             cardTransform.localPosition = new Vector3(
                 initialX + distanceBetweenCenters * i, 0, 0);
 
-            card.SetupOrderInLayer(i);
+            card.SetOrderInLayer(i);
 
             SelectableCard selectableCard = card.GetComponent<SelectableCard>();
             selectableCard.SetOriginalPosition(cardTransform.position);
@@ -306,7 +306,7 @@ public class Player : MonoBehaviour
         foreach (Card card in hand)
         {
             float cardAlpha = enable ? 1f : 0.1f;
-            card.ChangeCardAlpha(cardAlpha);
+            card.ChangeAlpha(cardAlpha);
             
             SelectableCard selectableCard = card.gameObject.GetComponent<SelectableCard>();
             selectableCard.UpdateCanSelect(enable);

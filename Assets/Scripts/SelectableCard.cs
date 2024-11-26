@@ -76,7 +76,7 @@ public class SelectableCard : MonoBehaviour
         
         transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, animationTime);
         transform.DOScale(originalScale +  increaseScaleAmount * Vector3.one, animationTime);
-        card.SetupOrderInLayer(player.GetPlayerHandCards().Count);
+        card.SetOrderInLayer(player.GetPlayerHandCards().Count);
     }
 
     private void OnMouseExit()
@@ -87,7 +87,7 @@ public class SelectableCard : MonoBehaviour
         {
             transform.DOMove(originalPosition, animationTime);
             transform.DOScale(originalScale, animationTime);
-            card.SetupOrderInLayer(originalIndex);
+            card.SetOrderInLayer(originalIndex);
         }
     }
 

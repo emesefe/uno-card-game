@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
     public void ShowCurrentColorText(CardColor color, float fadeTime = 0)
     {
         currentColorText.gameObject.SetActive(true);
-        currentColorText.color = Card.CardColors[color];
+        currentColorText.color = CardColors.CardColorsDictionary[color];
         currentColorText.text = color.ToString();
         
         currentColorText.DOFade(1, fadeTime);

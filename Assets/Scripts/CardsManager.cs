@@ -32,9 +32,9 @@ public class CardsManager : MonoBehaviour
 
         Card card = newCard.GetComponent<Card>();
         card.ChangeParent(drawDeckTransform);
-        card.SetupCardVisuals(soCard, color);
-        card.SetCardEffect();
-        card.SetupOrderInLayer(idx);
+        card.SetVisuals(soCard, color);
+        card.SetEffect();
+        card.SetOrderInLayer(idx);
         
         drawDeck.Add(card);
 
@@ -80,8 +80,8 @@ public class CardsManager : MonoBehaviour
             drawDeck[i] = drawDeck[randomIdx];
             drawDeck[randomIdx] = auxCard;
 
-            drawDeck[i].SetupOrderInLayer(i);
-            drawDeck[randomIdx].SetupOrderInLayer(randomIdx);
+            drawDeck[i].SetOrderInLayer(i);
+            drawDeck[randomIdx].SetOrderInLayer(randomIdx);
         }
     }
 
@@ -101,7 +101,7 @@ public class CardsManager : MonoBehaviour
         
         card.ChangeSize(Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
 
-        card.SetupOrderInLayer(discardDeck.Count - 1);
+        card.SetOrderInLayer(discardDeck.Count - 1);
 
         card.IsFaceDown(false);
         card.ShowCard();
