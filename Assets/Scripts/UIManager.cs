@@ -39,6 +39,20 @@ public class UIManager : MonoBehaviour
             StartCoroutine(player.PlaySelectedCards()));
         EnableConfirmSelectionButton(false);
     }
+    
+    private void InitializeChangeColorButtons()
+    {
+        for (int i = 0; i < changeColorButtons.Length; i++)
+        {
+            CardColor cardColor = (CardColor)i;
+            changeColorButtons[i].onClick.AddListener(() =>
+            {
+                GameManager.Instance.ChangeCurrentColor(cardColor);
+                HideChangeColorPanel();
+            });
+        }
+        HideChangeColorPanel();
+    }
 
     public void EnableConfirmSelectionButton(bool enable)
     {
@@ -83,24 +97,5 @@ public class UIManager : MonoBehaviour
     public void HideChangeColorPanel()
     {
         changeColorPanel.SetActive(false);
-    }
-
-    private void InitializeChangeColorButtons()
-    {
-        for (int i = 0; i < changeColorButtons.Length; i++)
-        {
-            ChangeColorFunction(i);
-        }
-        HideChangeColorPanel();
-    }
-
-    private void ChangeColorFunction(int i)
-    {
-        // TODO: Investigar por qué no funciona del otro modo
-        changeColorButtons[i].onClick.AddListener(() =>
-        {
-            GameManager.Instance.ChangeCurrentColor((CardColor)i);
-            HideChangeColorPanel();
-        });
     }
 }

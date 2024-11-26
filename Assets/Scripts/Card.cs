@@ -17,13 +17,13 @@ public class Card : MonoBehaviour
    private SOCard _soCard;
    private CardColor _cardColor;
    
-   private Dictionary<string, Color> cardColors = new Dictionary<string, Color>() 
+   private Dictionary<CardColor, Color> cardColors = new Dictionary<CardColor, Color>() 
    {
-        {"Red", Constants.RED_COLOR},
-        {"Green", Constants.GREEN_COLOR},
-        {"Blue", Constants.BLUE_COLOR},
-        {"Yellow", Constants.YELLOW_COLOR},
-        {"Black", Constants.BLACK_COLOR}
+        {CardColor.Red, Constants.RED_COLOR},
+        {CardColor.Green, Constants.GREEN_COLOR},
+        {CardColor.Blue, Constants.BLUE_COLOR},
+        {CardColor.Yellow, Constants.YELLOW_COLOR},
+        {CardColor.Black, Constants.BLACK_COLOR}
    };
 
    [SerializeField] private SpriteRenderer cardSpriteRenderer;
@@ -50,7 +50,7 @@ public class Card : MonoBehaviour
         _cardColor = color;
 
         symbolSpriteRenderer.sprite = soCard.sprite;
-        cardSpriteRenderer.color = cardColors[color.ToString()];
+        cardSpriteRenderer.color = cardColors[color];
    }
 
    public void ChangeCardAlpha(float alpha)
@@ -167,10 +167,5 @@ public class Card : MonoBehaviour
         Debug.Log("Juego la carta ChangeColor");
         
         // TODO: Diferenciar si juega el Main Player o si juega otro jugador
-   }
-   
-   public Color GetColorFromCardColor(CardColor cardColor)
-   {
-        return cardColors[cardColor.ToString()];
    }
 }
