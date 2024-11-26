@@ -1300,6 +1300,11 @@ MonoBehaviour:
   totalCardsToDrawText: {fileID: 1695111469}
   totalCardsCanvasGroup: {fileID: 1824561624}
   changeColorPanel: {fileID: 2055431042}
+  changeColorButtons:
+  - {fileID: 237605364}
+  - {fileID: 1632195325}
+  - {fileID: 904972616}
+  - {fileID: 1892682368}
 --- !u!4 &1192627248
 Transform:
   m_ObjectHideFlags: 0
