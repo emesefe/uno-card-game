@@ -1603,17 +1603,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1375616332}
   initialCards:
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
+    color: 1
+    total: 1
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
     color: 0
     total: 1
-  - soCard: {fileID: 11400000, guid: e99c852fffef5400795754d09d74479e, type: 2}
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
     color: 2
     total: 1
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
-    color: 2
-    total: 2
-  - soCard: {fileID: 11400000, guid: 20126416743d74a4ea28504e218c5274, type: 2}
-    color: 4
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
+    color: 3
     total: 1
 --- !u!1 &1424477999
 GameObject:
@@ -2126,23 +2126,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1828412310}
   initialCards:
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
     color: 0
-    total: 2
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+    total: 1
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
     color: 1
     total: 1
-  - soCard: {fileID: 11400000, guid: b7c654e22db604b5abd823664b0726da, type: 2}
-    color: 4
+  - soCard: {fileID: 11400000, guid: f68cbcbe184f843b9b08408eb13d8a84, type: 2}
+    color: 1
     total: 1
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+  - soCard: {fileID: 11400000, guid: f68cbcbe184f843b9b08408eb13d8a84, type: 2}
     color: 3
     total: 1
-  - soCard: {fileID: 11400000, guid: 0493778c4c67a44e4940aa4e1985b0b1, type: 2}
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
     color: 2
     total: 1
   - soCard: {fileID: 11400000, guid: 20126416743d74a4ea28504e218c5274, type: 2}
     color: 4
+    total: 1
+  - soCard: {fileID: 11400000, guid: f68cbcbe184f843b9b08408eb13d8a84, type: 2}
+    color: 2
+    total: 1
+  - soCard: {fileID: 11400000, guid: ee512635197f64fee98cc44cbdf1c04f, type: 2}
+    color: 3
+    total: 1
+  - soCard: {fileID: 11400000, guid: f68cbcbe184f843b9b08408eb13d8a84, type: 2}
+    color: 0
     total: 1
 --- !u!1 &1892682366
 GameObject:
