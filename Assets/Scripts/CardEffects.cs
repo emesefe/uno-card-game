@@ -25,6 +25,7 @@ public class CardEffects : MonoBehaviour
     private static void PlaySkipEffect() 
     {
         Debug.Log("Juego la carta Skip");
+        GameManager.Instance.SetChangingTurns(true);
         GameManager.Instance.ChangeTurn();
     }
 

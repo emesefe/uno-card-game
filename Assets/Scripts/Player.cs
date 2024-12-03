@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -152,11 +153,21 @@ public class Player : MonoBehaviour
         return false;
     }
     
-    public CardType? GetFirstCardThatCanBePlayed() 
+    public CardType? GetFirstCardTypeThatCanBePlayed() 
     {
         foreach (Card card in hand)
         {
             if (CanPlayCard(card)) return card.GetCardType();
+        }
+
+        return null;
+    }
+    
+    public Card? GetFirstCardThatCanBePlayed() 
+    {
+        foreach (Card card in hand)
+        {
+            if (CanPlayCard(card)) return card;
         }
 
         return null;
@@ -169,11 +180,11 @@ public class Player : MonoBehaviour
     
     public void PlayCard(Card card)
     {
-        card.PlayCardEffect();
         RemoveCardFromPlayerHand(card);  
+        card.PlayCardEffect();
         cardsManager.AddCardToDiscardDeck(card);
 
-        if (card.GetColor() != CardColor.Black) // TODO: Crear función
+        if (!card.IsPlus4OrChangeColor())
         {
             GameManager.Instance.ChangeCurrentColor(card.GetColor());
         }
@@ -280,14 +291,16 @@ public class Player : MonoBehaviour
     public IEnumerator PlaySelectedCards()
     {
         if (selectedCards.Count <= 0) yield break;
-        
+
         foreach (Card card in selectedCards)
         {
             Destroy(card.GetComponent<SelectableCard>());
             Destroy(card.GetComponent<BoxCollider2D>());
-
+            
             PlayCard(card);
         }
+        
+        GameManager.Instance.SetChangingTurns(false);
         
         yield return new WaitUntil(GameManager.Instance.GetColorHasBeenChanged);
         GameManager.Instance.SetColorHasBeenChanged(false);

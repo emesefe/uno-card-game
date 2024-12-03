@@ -52,8 +52,8 @@
         <li>- [x] SKIP -> Saltar turno</li>
         <li>- [x] INVERT -> Cambiar sentido de turnos</li>
         <li>- [x] PLUS2 -> Robar carta y saltar turno</li>
-        <li>- [ ] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
-        <li>- [ ] CHANGE_COLOR -> Cambiar de color</li>
+        <li>- [x] PLUS4 -> Cambiar de color, robar carta y saltar turno</li>
+        <li>- [x] CHANGE_COLOR -> Cambiar de color</li>
     </ul>
 </details>
 
@@ -115,7 +115,6 @@
         <li>- [ ] Panel Win con 2 botones (volver a jugar o volver a Main Menu). Mostrar total de rondas ganadas en la misma sesión.</li>
         <li>- [ ] Panel Game Over con 2 botones (volver a jugar o volver a Main Menu). Mostrar total de rondas ganadas en la misma sesión.</li>
         <li>- [x] Panel de selector de color (4 opciones de color y opción random)</li>
-        <li>- [ ] Añadir a panel de selector de color la opción random</li>
         <li>- [ ] Mostrar de qué jugador es el turno haciendo que el icono del jugador esté destacado (más grande, brillo, indicador sobre el icono)</li>
         <li>- [x] Mostrar la mano del jugador</li>
         <li>- [x] Si no es el turno del jugador, las cartas se ven más oscuras</li>
@@ -145,8 +144,8 @@
         <li>- [ ] En cada turno conocemos la última carta en el mazo de descarte (símbolo y color), el jugador que tiene el turno y el tiempo restante del turno</li>
         <li>- [ ] Reiniciar temporizador</li>
         <li>- [ ] Detectar si el temporizador ha finalizado</li>
-        <li>- [ ] Cambiar de color</li>
-        <li>- [ ] El turno de un jugador finaliza cuando ha hecho una jugada, ha robado o se ha acabado el turno</li>
+        <li>- [x] Cambiar de color</li>
+        <li>- [ ] El turno de un jugador finaliza cuando ha hecho una jugada, ha robado o se ha acabado su tiempo</li>
         <li>- [ ] Si se acaba el turno, roba automáticamente 2 cartas y pierde el turno</li>
         <li>- [x] Añadir carta a mazo de robo</li>
         <li>- [x] Generar el mazo de robo</li>
@@ -176,8 +175,8 @@
         <li>- [ ] En caso de que a un jugador le quede una sola carta, aparecerá un botón en un punto aleatorio de la pantalla, sonará un SFX y el jugador con una carta tiene que ser el primero en darle al botón. Si otro jugador es más rápido en darle al botón, el jugador al que le quedaba una carta deberá robar dos cartas y pierde el turno</li>
         <li>- [x] En el mazo de descarte se pueden acumular solamente PLUS2 infinitamente. Es decir, después de un PLUS2 el siguiente jugador puede tirar otro PLUS2 y librarse de robar, pero no puede tirar un PLUS4</li>
         <li>- [x] Si al jugador le tiran un PLUS2 y dispone de un PLUS2, tiene que tirarlo, no puede guardárselo</li>
-        <li>- [ ] En el mazo de descarte se pueden acumular solamente PLUS4 infinitamente. Es decir, después de un PLUS4 el siguiente jugador puede tirar otro PLUS4 y librarse de robar, pero no puede tirar un PLUS2</li>
-        <li>- [ ] Si al jugador le tiran un PLUS4 y dispone de un PLUS4, tiene que tirarlo, no puede guardárselo</li>
+        <li>- [x] En el mazo de descarte se pueden acumular solamente PLUS4 infinitamente. Es decir, después de un PLUS4 el siguiente jugador puede tirar otro PLUS4 y librarse de robar, pero no puede tirar un PLUS2</li>
+        <li>- [x] Si al jugador le tiran un PLUS4 y dispone de un PLUS4, tiene que tirarlo, no puede guardárselo</li>
         <li>- [ ] Si se salta un turno a un jugador por una carta SKIP, dicho jugador tendrá un icono de prohíbido sobre su icono de jugador. Si se trata del propio jugador el que está bloqueado, el botón de confirmar tendrá un icono de prohibido o estará deshabilitado</li>
         <li>- [ ] Configuar el volumen de la música</li>
         <li>- [ ] Configuar el volumen de los SFX</li>
