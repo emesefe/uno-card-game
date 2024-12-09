@@ -122,7 +122,7 @@
         <li>- [x] Botón de confirmar jugada</li>
         <li>- [x] Mostrar el mazo de robo</li>
         <li>- [x] Botón de robar carta</li>
-        <li>- [ ] Mostrar el mazo de descarte con un mínimo de 4 cartas</li>
+        <li>- [x] Mostrar el mazo de descarte con un mínimo de 4 cartas</li>
         <li>- [ ] Mostrar el sentido del juego (horario o antihorario)</li>
         <li>- [ ] Cuando el sentido cambia, destacar el icono que representa el sentido del juego</li>
         <li>- [x] Mostrar, cuando se juegue un PLUS2 o un PLUS4 un acumulador con el total de cartas a robar</li>
