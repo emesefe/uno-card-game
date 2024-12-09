@@ -82,6 +82,11 @@ public class Card : MonoBehaviour
         transform.localPosition = Vector3.zero;
    }
 
+   public void ChangeLocalPosition(Vector3 newPosition)
+   {
+        transform.localPosition = newPosition;
+   }
+
    public void ChangeSize(int newWidth, int newHeight = 0)
    {
         if (newHeight > 0)

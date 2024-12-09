@@ -14,6 +14,8 @@ public class CardsManager : MonoBehaviour
 
     [SerializeField] private List<Card> drawDeck;
     [SerializeField] private List<Card> discardDeck;
+    
+    [SerializeField] private DiscardDeckVisuals discardDeckVisuals;
 
     private void Awake()
     {
@@ -98,18 +100,24 @@ public class CardsManager : MonoBehaviour
         discardDeck.Add(card);
         
         card.ChangeParent(discardDeckTransform);
-        
         card.ChangeSize(Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
-
         card.SetOrderInLayer(discardDeck.Count - 1);
 
         card.IsFaceDown(false);
         card.ShowCard();
+
+        discardDeckVisuals.ArrangeLast4PlayedCards(card);
     }
 
     public Card GetLastPlayedCard()
     {
         return discardDeck[discardDeck.Count - 1];
+    }
+
+    public List<Card> Get4LastPlayedCards()
+    {
+        int lastFourthCardIdx = discardDeck.Count - 5;
+        return discardDeck.GetRange(lastFourthCardIdx, 4);
     }
 
     public static bool AreTwoCardsEqual(Card card1, Card card2)
