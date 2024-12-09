@@ -46,7 +46,7 @@
 </details>
 
 <details>
-<summary>Lógica</summary>
+<summary>Lógica ☑️</summary>
 <br>
     <ul>
         <li>- [x] SKIP -> Saltar turno</li>
