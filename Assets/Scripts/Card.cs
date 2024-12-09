@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class Card : MonoBehaviour
 {
    private SOCard _soCard;
-   private Color _color;
+   private CardColor _color;
 
    [SerializeField] private SpriteRenderer cardSpriteRenderer;
    [SerializeField] private SpriteRenderer symbolSpriteRenderer;
@@ -14,20 +16,38 @@ public class Card : MonoBehaviour
    [SerializeField] private SpriteRenderer backSpriteRenderer;
 
    private bool _isFaceDown;
+   
+   public Action PlayCardEffect;
 
-   public void SetupOrderInLayer(int idx)
+   public void SetOrderInLayer(int idx)
    {
         cardSpriteRenderer.sortingOrder = 3 * idx;
         symbolSpriteRenderer.sortingOrder = 3 * idx + 1;
         backSpriteRenderer.sortingOrder = 3 * idx + 2; 
    }
-
-   public void SetupCardVisuals(SOCard soCard, Color color)
+   
+   public void SetVisuals(SOCard soCard, CardColor color)
    {
         _soCard = soCard;
         _color = color;
 
         symbolSpriteRenderer.sprite = soCard.sprite;
+        cardSpriteRenderer.color = CardColors.CardColorsDictionary[color];
+   }
+
+   public void ChangeAlpha(float alpha)
+   {
+        cardSpriteRenderer.DOFade(alpha, 0.5f);
+   }
+
+   public void ShowCard()
+   {
+        gameObject.SetActive(true);
+   }
+
+   public void HideCard()
+   {
+        gameObject.SetActive(false);
    }
 
    public void IsFaceDown(bool isFaceDown)
@@ -41,13 +61,41 @@ public class Card : MonoBehaviour
         return _soCard.type;
    }
 
+   public bool IsPlus4OrChangeColor()
+   {
+        return _soCard.type == CardType.Plus4 || _soCard.type == CardType.ChangeColor;
+   }
+
    public int GetCardDigit()
    {
         return _soCard.digit;
    }
 
-   public Color GetColor()
+   public CardColor GetColor()
    {
         return _color;
+   }
+
+   public void ChangeParent(Transform newParent)
+   {
+        transform.SetParent(newParent);
+        transform.localPosition = Vector3.zero;
+   }
+
+   public void ChangeSize(int newWidth, int newHeight = 0)
+   {
+        if (newHeight > 0)
+        {
+             transform.localScale = new Vector3(newWidth, newHeight, 1);
+             return;
+        }
+        
+        float prop = newWidth / transform.localScale.x;
+        transform.localScale = new Vector3(newWidth, prop * transform.localScale.y, 1);
+   }
+
+   public void SetEffect()
+   {
+        PlayCardEffect = CardEffects.SetEffect(_soCard.type);
    }
 }

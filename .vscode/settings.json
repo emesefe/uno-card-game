@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "uno-card-game.sln"
+    "dotnet.defaultSolution": "uno-card-game.sln",
+    "omnisharp.useModernNet": false
 }
