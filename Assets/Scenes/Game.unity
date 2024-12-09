@@ -1566,12 +1566,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  totalInitialCards: 20
+  totalInitialCards: 7
   handTransform: {fileID: 967443796}
   handHorizontalLimits: []
   visualCardWidth: 2
   isMainPlayer: 0
-  overrideInitialCards: 1
+  overrideInitialCards: 0
   initialCardsSelector: {fileID: 1375616334}
 --- !u!4 &1375616333
 Transform:
@@ -2087,14 +2087,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
-  totalInitialCards: 20
+  totalInitialCards: 7
   handTransform: {fileID: 1287111289}
   handHorizontalLimits:
   - -20
   - 20
   visualCardWidth: 4
   isMainPlayer: 1
-  overrideInitialCards: 1
+  overrideInitialCards: 0
   initialCardsSelector: {fileID: 1828412312}
 --- !u!4 &1828412311
 Transform:
