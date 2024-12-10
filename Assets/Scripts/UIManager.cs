@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentColorText;
     
     [SerializeField] private GameObject winPanel;
+    
+    [SerializeField] private GameObject UNOPanel;
+    [SerializeField] private Button UNOButton;
 
     private void Awake()
     {
@@ -40,6 +43,9 @@ public class UIManager : MonoBehaviour
         InitializeChangeColorButtons();
         
         HideWinPanel();
+        HideUNOPanel();
+        
+        InitializeUNOButton();
     }
 
     private void InitializeConfirmSelectionButton()
@@ -61,6 +67,14 @@ public class UIManager : MonoBehaviour
                 ShowCurrentColorText(cardColor);
             });
         }
+    }
+
+    private void InitializeUNOButton()
+    {
+        UNOButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.SetUNOButtonHasBeenPressed(true, 0);
+        });
     }
 
     public void EnableConfirmSelectionButton(bool enable)
@@ -111,6 +125,16 @@ public class UIManager : MonoBehaviour
     public void ShowWinPanel()
     {
         winPanel.SetActive(true);
+    }
+
+    public void HideUNOPanel()
+    {
+        UNOPanel.SetActive(false);
+    }
+    
+    public void ShowUNOPanel()
+    {
+        UNOPanel.SetActive(true);
     }
 
     private void HideWinPanel()

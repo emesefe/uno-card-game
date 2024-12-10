@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public enum Turn {
     Player01,
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
 
     private CardColor currentColor;
     private bool colorHasBeenChanged;
+
+    private bool unoButtonHasBeenPressed;
+    private Player whoHasPressedUnoButton;
+
+    private float timeToWaitForPlayerToPlay = 3f;
 
     private void Awake()
     {
@@ -84,13 +90,6 @@ public class GameManager : MonoBehaviour
     {
         int currentTurnIdx = (int)currentTurn; 
         
-        bool gameOver = CheckIfCurrentPlayerHasWon(currentTurnIdx);
-        if (gameOver)
-        {
-            UIManager.Instance.ShowWinPanel();
-            return;
-        }
-    
         if (turnOrderClockwise)
         {
             currentTurnIdx += turnsToChange;
@@ -115,6 +114,11 @@ public class GameManager : MonoBehaviour
         if (changingTurns) return;
         
         // He empezado el siguiente turno
+        StartNextTurn();
+    }
+
+    private void StartNextTurn()
+    {
         Player currentPlayer = players[(int)currentTurn];
         
         if (totalCardsToDraw > 0)
@@ -132,12 +136,18 @@ public class GameManager : MonoBehaviour
         Player currentPlayer = players[currentTurnIdx];
         return currentPlayer.CheckIfHasWon();
     }
+    
+    private bool CheckIfCurrentPlayerHasUNO(int currentTurnIdx)
+    {
+        Player currentPlayer = players[currentTurnIdx];
+        return currentPlayer.CheckUNO();
+    }
 
     private IEnumerator CheckIfCanPlayCard(Player currentPlayer)
     {
         if (IsCurrentPlayerMainPlayer()) yield break;
         
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeToWaitForPlayerToPlay);
             
         Card? cardToPlay = currentPlayer.GetFirstCardThatCanBePlayed();
         while (cardToPlay == null)
@@ -146,7 +156,9 @@ public class GameManager : MonoBehaviour
             cardToPlay = currentPlayer.GetFirstCardThatCanBePlayed();
         }
         
-        currentPlayer.PlayCard(cardToPlay);
+        StartCoroutine(currentPlayer.PlayCard(cardToPlay));
+        
+        
         SetChangingTurns(false);
         ChangeTurn();
     }
@@ -172,14 +184,16 @@ public class GameManager : MonoBehaviour
         {
             if (IsCurrentPlayerMainPlayer()) yield break;
             
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(timeToWaitForPlayerToPlay);
             
             CardType? typeToPlay = currentPlayer.GetFirstCardTypeThatCanBePlayed();
             if (typeToPlay != null)
             {
                 Card cardToPlay = currentPlayer.FindCardInHand(typeToPlay.Value);
-                currentPlayer.PlayCard(cardToPlay);
+                StartCoroutine(currentPlayer.PlayCard(cardToPlay));
             }
+            
+            
         }
         
         ChangeTurn();
@@ -247,5 +261,30 @@ public class GameManager : MonoBehaviour
     public bool GetChangingTurns()
     {
         return changingTurns;
+    }
+    
+    public bool GetUNOButtonHasBeenPressed()
+    {
+        return unoButtonHasBeenPressed;
+    }
+
+    public Player GetWhoHasPressedUnoButton()
+    {
+        return whoHasPressedUnoButton;
+    }
+
+    public void SetUNOButtonHasBeenPressed(bool hasBeenPressed, int whoHasPressedIdx)
+    {
+        unoButtonHasBeenPressed = hasBeenPressed;
+        whoHasPressedUnoButton = whoHasPressedIdx < 0 ? null : players[whoHasPressedIdx];
+    }
+
+    public IEnumerator UNOTimer()
+    {
+        // TODO: Make this timer random
+        yield return new WaitForSeconds(3f);
+        
+        int randomPlayerIdx = Random.Range(1, totalPlayingPlayers);
+        SetUNOButtonHasBeenPressed(true, randomPlayerIdx);
     }
 }
