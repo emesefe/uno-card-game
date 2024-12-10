@@ -18,8 +18,6 @@ public class Player : MonoBehaviour
 
     private List<Card> selectedCards = new List<Card>();
 
-    private CardsManager cardsManager;
-
     [SerializeField] private bool isMainPlayer; 
     
         
@@ -27,11 +25,6 @@ public class Player : MonoBehaviour
     [SerializeField] private bool overrideInitialCards;
 
     [SerializeField] private InitialCardsSelector initialCardsSelector;
-
-    private void Start()
-    {
-        cardsManager = FindObjectOfType<CardsManager>();
-    }
 
     private void OnEnable()
     {
@@ -178,11 +171,16 @@ public class Player : MonoBehaviour
         return hand;
     }
     
+    public bool CheckIfHasWon()
+    {
+        return hand.Count <= 0;
+    }
+    
     public void PlayCard(Card card)
     {
         RemoveCardFromPlayerHand(card);  
         card.PlayCardEffect();
-        cardsManager.AddCardToDiscardDeck(card);
+        CardsManager.Instance.AddCardToDiscardDeck(card);
 
         if (!card.IsPlus4OrChangeColor())
         {

@@ -83,6 +83,13 @@ public class GameManager : MonoBehaviour
     public void ChangeTurn(int turnsToChange = 1)
     {
         int currentTurnIdx = (int)currentTurn; 
+        
+        bool gameOver = CheckIfCurrentPlayerHasWon(currentTurnIdx);
+        if (gameOver)
+        {
+            UIManager.Instance.ShowWinPanel();
+            return;
+        }
     
         if (turnOrderClockwise)
         {
@@ -109,6 +116,7 @@ public class GameManager : MonoBehaviour
         
         // He empezado el siguiente turno
         Player currentPlayer = players[(int)currentTurn];
+        
         if (totalCardsToDraw > 0)
         {
             StartCoroutine(CheckIfPlus2OrPlus4WasPlayed(currentPlayer));
@@ -117,6 +125,12 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(CheckIfCanPlayCard(currentPlayer));
         }
+    }
+
+    private bool CheckIfCurrentPlayerHasWon(int currentTurnIdx)
+    {
+        Player currentPlayer = players[currentTurnIdx];
+        return currentPlayer.CheckIfHasWon();
     }
 
     private IEnumerator CheckIfCanPlayCard(Player currentPlayer)

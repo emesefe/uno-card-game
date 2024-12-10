@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject changeColorPanel;
     [SerializeField] private Button[] changeColorButtons;
     [SerializeField] private TextMeshProUGUI currentColorText;
+    
+    [SerializeField] private GameObject winPanel;
 
     private void Awake()
     {
@@ -36,6 +38,8 @@ public class UIManager : MonoBehaviour
         
         HideChangeColorPanel();
         InitializeChangeColorButtons();
+        
+        HideWinPanel();
     }
 
     private void InitializeConfirmSelectionButton()
@@ -102,6 +106,16 @@ public class UIManager : MonoBehaviour
     private void HideChangeColorPanel()
     {
         changeColorPanel.SetActive(false);
+    }
+    
+    public void ShowWinPanel()
+    {
+        winPanel.SetActive(true);
+    }
+
+    private void HideWinPanel()
+    {
+        winPanel.SetActive(false);
     }
 
     public void ShowCurrentColorText(CardColor color, float fadeTime = 0)
