@@ -2166,6 +2166,8 @@ MonoBehaviour:
   winPanel: {fileID: 1947602902}
   UNOPanel: {fileID: 402142465}
   UNOButton: {fileID: 570837809}
+  UNOButtonRectTransform: {fileID: 570837808}
+  UNOPositionLimits: 5802000090010000
 --- !u!4 &1192627248
 Transform:
   m_ObjectHideFlags: 0

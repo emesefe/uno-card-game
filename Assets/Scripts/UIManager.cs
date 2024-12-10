@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private GameObject UNOPanel;
     [SerializeField] private Button UNOButton;
+    [SerializeField] private RectTransform UNOButtonRectTransform;
+    [SerializeField] private int[] UNOPositionLimits;
 
     private void Awake()
     {
@@ -134,6 +136,10 @@ public class UIManager : MonoBehaviour
     
     public void ShowUNOPanel()
     {
+        int randomX = Random.Range(-UNOPositionLimits[0], UNOPositionLimits[0] + 1);
+        int randomY = Random.Range(-UNOPositionLimits[1], UNOPositionLimits[1] + 1);
+        
+        UNOButtonRectTransform.localPosition = new Vector3(randomX, randomY, 0);
         UNOPanel.SetActive(true);
     }
 
