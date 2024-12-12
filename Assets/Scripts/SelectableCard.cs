@@ -4,13 +4,14 @@ using DG.Tweening;
 [RequireComponent(typeof(BoxCollider2D))]
 public class SelectableCard : MonoBehaviour
 {
-    private Player player;
-    private Card card;
+    private Player _player;
+    private Card _card;
+    
     private Vector3 originalPosition;
     private Vector3 originalScale;
     private int originalIndex;
 
-    private bool seletectedCard;
+    private bool selectedCard;
 
     private float distanceToGoUp = 2.5f;
     private float increaseScaleAmount = 1f;
@@ -19,6 +20,53 @@ public class SelectableCard : MonoBehaviour
 
     private bool canSelect = true; // TODO: Esto hay que cambiarlo porque el turno inicial es aleatorio
 
+    private void OnMouseDown()
+    {
+        if (!canSelect) return; 
+        
+        if (_player.CanPlayCard(_card) && !selectedCard)
+        {
+            if (_player.GetTotalSelectedCards() <= 0 || Card.AreTwoCardsEqual(_card, _player.GetSelectedCard()))
+            {
+                selectedCard = true;
+                _player.AddSelectedCard(_card);
+                UIManager.Instance.EnableConfirmSelectionButton(true);
+            }
+        } 
+
+        else if (selectedCard)
+        {
+            selectedCard = false;
+            _player.RemoveSelectedCard(_card);
+
+            if (_player.GetTotalSelectedCards() <= 0)
+            {
+                UIManager.Instance.EnableConfirmSelectionButton(false);
+            }
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        if (!canSelect) return; 
+        
+        transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, animationTime);
+        transform.DOScale(originalScale +  increaseScaleAmount * Vector3.one, animationTime);
+        _card.SetOrderInLayer(_player.GetPlayerHandCards().Count);
+    }
+
+    private void OnMouseExit()
+    {
+        if (!canSelect) return;
+        
+        if (!selectedCard)
+        {
+            transform.DOMove(originalPosition, animationTime);
+            transform.DOScale(originalScale, animationTime);
+            _card.SetOrderInLayer(originalIndex);
+        }
+    }
+    
     public void SetOriginalPosition(Vector3 position)
     {
         originalPosition = position;
@@ -36,59 +84,12 @@ public class SelectableCard : MonoBehaviour
 
     public void SetPlayer(Player player)
     {
-        this.player = player;
+        _player = player;
     }
 
     public void SetCard(Card card)
     {
-        this.card = card;
-    }
-
-    private void OnMouseDown()
-    {
-        if (!canSelect) return; 
-        
-        if (player.CanPlayCard(card) && !seletectedCard)
-        {
-            if (player.GetTotalSelectedCards() <= 0 || Card.AreTwoCardsEqual(card, player.GetSelectedCard()))
-            {
-                seletectedCard = true;
-                player.AddSelectedCard(card);
-                UIManager.Instance.EnableConfirmSelectionButton(true);
-            }
-        } 
-
-        else if (seletectedCard)
-        {
-            seletectedCard = false;
-            player.RemoveSelectedCard(card);
-
-            if (player.GetTotalSelectedCards() <= 0)
-            {
-                UIManager.Instance.EnableConfirmSelectionButton(false);
-            }
-        }
-    }
-
-    private void OnMouseEnter()
-    {
-        if (!canSelect) return; 
-        
-        transform.DOMove(originalPosition + distanceToGoUp * Vector3.up, animationTime);
-        transform.DOScale(originalScale +  increaseScaleAmount * Vector3.one, animationTime);
-        card.SetOrderInLayer(player.GetPlayerHandCards().Count);
-    }
-
-    private void OnMouseExit()
-    {
-        if (!canSelect) return;
-        
-        if (!seletectedCard)
-        {
-            transform.DOMove(originalPosition, animationTime);
-            transform.DOScale(originalScale, animationTime);
-            card.SetOrderInLayer(originalIndex);
-        }
+        _card = card;
     }
 
     public void UpdateCanSelect(bool isSelectionAvailable)
