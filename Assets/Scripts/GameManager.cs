@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         
         // Inicializar partida
         CardsManager.Instance.CreateDrawDeck();
-        CardsManager.Instance.ShuffleDeck();
+        CardsManager.Instance.ShuffleDrawDeck();
         
         turnOrderClockwise = true;
         totalCardsToDraw = 0;

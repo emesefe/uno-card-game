@@ -50,7 +50,7 @@ public class SelectableCard : MonoBehaviour
         
         if (player.CanPlayCard(card) && !seletectedCard)
         {
-            if (player.GetTotalSelectedCards() <= 0 || CardsManager.AreTwoCardsEqual(card, player.GetSelectedCard()))
+            if (player.GetTotalSelectedCards() <= 0 || Card.AreTwoCardsEqual(card, player.GetSelectedCard()))
             {
                 seletectedCard = true;
                 player.AddSelectedCard(card);

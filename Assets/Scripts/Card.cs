@@ -71,7 +71,7 @@ public class Card : MonoBehaviour
 
    public bool IsPlus4OrChangeColor()
    {
-        return _soCard.type == CardType.Plus4 || _soCard.type == CardType.ChangeColor;
+        return _soCard.IsPlus4OrChangeColor();
    }
 
    
@@ -104,4 +104,17 @@ public class Card : MonoBehaviour
         cardSpriteRenderer.DOFade(alpha, 0.5f);
    }
    
+   
+   public static bool AreTwoCardsEqual(Card card1, Card card2)
+   {
+        if (card1.GetColor() != card2.GetColor()) return false;
+
+        if (card1.GetCardType() != card2.GetCardType()) return false;
+       
+        if (card1.GetCardType() != CardType.Number) return true;
+
+        if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
+
+        return true;
+   }
 }

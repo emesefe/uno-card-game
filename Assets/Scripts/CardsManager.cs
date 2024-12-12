@@ -43,6 +43,7 @@ public class CardsManager : MonoBehaviour
         return card;
     }
 
+    #region DRAW DECK
     public void CreateDrawDeck()
     {
         int layer = 0;
@@ -50,7 +51,8 @@ public class CardsManager : MonoBehaviour
         foreach (SOCard soCard in soCards)
         {
             Card newCard = null;
-            if (soCard.type == CardType.Plus4 || soCard.type == CardType.ChangeColor)
+            
+            if (soCard.IsPlus4OrChangeColor())
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -72,12 +74,13 @@ public class CardsManager : MonoBehaviour
         }   
     }
 
-    public void ShuffleDeck()
+    public void ShuffleDrawDeck()
     {
         Card auxCard = null;
         for (int i = 0; i < drawDeck.Count; i++)
         {
             int randomIdx = Random.Range(i, drawDeck.Count);
+            
             auxCard = drawDeck[i];
             drawDeck[i] = drawDeck[randomIdx];
             drawDeck[randomIdx] = auxCard;
@@ -95,6 +98,10 @@ public class CardsManager : MonoBehaviour
         return drewCard;
     }
 
+    #endregion
+
+    #region DISCARD DECK
+    
     public void AddCardToDiscardDeck(Card card)
     {
         discardDeck.Add(card);
@@ -108,22 +115,11 @@ public class CardsManager : MonoBehaviour
 
         discardDeckVisuals.ArrangeLastPlayedCards(card);
     }
-
+    
     public Card GetLastPlayedCard()
     {
         return discardDeck[discardDeck.Count - 1];
     }
-
-    public static bool AreTwoCardsEqual(Card card1, Card card2)
-    {
-        if (card1.GetColor() != card2.GetColor()) return false;
-
-        if (card1.GetCardType() != card2.GetCardType()) return false;
-       
-        if (card1.GetCardType() != CardType.Number) return true;
-
-        if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
-
-        return true;
-    }
+    
+    #endregion
 }
