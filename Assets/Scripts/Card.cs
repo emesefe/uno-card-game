@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
-using Random = UnityEngine.Random;
 
 public class Card : MonoBehaviour
 {
+   public Action PlayCardEffect;
+   
    private SOCard _soCard;
    private CardColor _color;
 
@@ -14,10 +14,6 @@ public class Card : MonoBehaviour
 
    [SerializeField] private GameObject backCard;
    [SerializeField] private SpriteRenderer backSpriteRenderer;
-
-   private bool _isFaceDown;
-   
-   public Action PlayCardEffect;
 
    public void SetOrderInLayer(int idx)
    {
@@ -34,12 +30,13 @@ public class Card : MonoBehaviour
         symbolSpriteRenderer.sprite = soCard.sprite;
         cardSpriteRenderer.color = CardColors.CardColorsDictionary[color];
    }
-
-   public void ChangeAlpha(float alpha)
+   
+   public void SetEffect()
    {
-        cardSpriteRenderer.DOFade(alpha, 0.5f);
+        PlayCardEffect = CardEffects.SetEffect(_soCard.type);
    }
 
+   
    public void ShowCard()
    {
         gameObject.SetActive(true);
@@ -49,21 +46,11 @@ public class Card : MonoBehaviour
    {
         gameObject.SetActive(false);
    }
-
-   public void IsFaceDown(bool isFaceDown)
-   {
-        _isFaceDown = isFaceDown;
-        backCard.SetActive(isFaceDown);
-   }
-
+   
+   
    public CardType GetCardType()
    {
         return _soCard.type;
-   }
-
-   public bool IsPlus4OrChangeColor()
-   {
-        return _soCard.type == CardType.Plus4 || _soCard.type == CardType.ChangeColor;
    }
 
    public int GetCardDigit()
@@ -76,10 +63,22 @@ public class Card : MonoBehaviour
         return _color;
    }
 
+   
+   public void IsFaceDown(bool isFaceDown)
+   {
+        backCard.SetActive(isFaceDown);
+   }
+
+   public bool IsPlus4OrChangeColor()
+   {
+        return _soCard.type == CardType.Plus4 || _soCard.type == CardType.ChangeColor;
+   }
+
+   
    public void ChangeParent(Transform newParent)
    {
         transform.SetParent(newParent);
-        transform.localPosition = Vector3.zero;
+        ChangeLocalPosition(Vector3.zero);
    }
 
    public void ChangeLocalPosition(Vector3 newPosition)
@@ -99,8 +98,10 @@ public class Card : MonoBehaviour
         transform.localScale = new Vector3(newWidth, prop * transform.localScale.y, 1);
    }
 
-   public void SetEffect()
+   //TODO: No acaba de funcionar para las cartas negras
+   public void ChangeAlpha(float alpha)
    {
-        PlayCardEffect = CardEffects.SetEffect(_soCard.type);
+        cardSpriteRenderer.DOFade(alpha, 0.5f);
    }
+   
 }
