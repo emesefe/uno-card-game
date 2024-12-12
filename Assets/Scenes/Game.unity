@@ -1669,7 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bc56cecbdc14d629026ad092408ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1828412310}
+  mainPlayer: {fileID: 1828412310}
 --- !u!61 &902220288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmSelectionButton: {fileID: 51470852}
-  player: {fileID: 1828412310}
+  mainPlayer: {fileID: 1828412310}
   totalCardsToDraw: {fileID: 1824561620}
   totalCardsToDrawRectTransform: {fileID: 1824561621}
   totalCardsToDrawText: {fileID: 1695111469}
