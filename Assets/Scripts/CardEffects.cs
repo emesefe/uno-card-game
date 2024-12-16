@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CardEffects : MonoBehaviour
+public static class CardEffects
 {
     public static Action SetEffect(CardType cardType)
     {

@@ -16,4 +16,9 @@ public class SOCard : ScriptableObject
     public CardType type;
     public int digit;
     public Sprite sprite;
+    
+    public bool IsPlus4OrChangeColor()
+    {
+        return type == CardType.Plus4 || type == CardType.ChangeColor;
+    }
 }

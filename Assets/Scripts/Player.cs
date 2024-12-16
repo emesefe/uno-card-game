@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -172,13 +173,55 @@ public class Player : MonoBehaviour
     }
     
     public bool CheckIfHasWon()
+<<<<<<< HEAD
     {
         return hand.Count <= 0;
     }
     
     public void PlayCard(Card card)
+=======
+>>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     {
-        RemoveCardFromPlayerHand(card);  
+        return hand.Count <= 0;
+    }
+    
+    public bool CheckUNO()
+    {
+        return hand.Count == 1;
+    }
+    
+    public IEnumerator PlayCard(Card card)
+    {
+        RemoveCardFromPlayerHand(card);
+        
+        if (CheckIfHasWon())
+        {
+            UIManager.Instance.ShowWinPanel();
+            UIManager.Instance.HideUNOPanel();
+            StopAllCoroutines();
+            yield return null;
+        }
+        
+        if (CheckUNO())
+        {
+            UIManager.Instance.ShowUNOPanel();
+            StartCoroutine(GameManager.Instance.UNOTimer());
+            
+            yield return new WaitUntil(() => GameManager.Instance.GetUNOButtonHasBeenPressed());
+            UIManager.Instance.HideUNOPanel();
+            
+            if (GameManager.Instance.GetWhoHasPressedUnoButton() != this )
+            {
+                // Robo dos cartas por lento
+                for (int i = 0; i < 2; i++)
+                {
+                    DrawCardToPlayerHand();
+                }
+            }
+            
+            GameManager.Instance.SetUNOButtonHasBeenPressed(false, -1);
+        }
+        
         card.PlayCardEffect();
         CardsManager.Instance.AddCardToDiscardDeck(card);
 
@@ -295,12 +338,15 @@ public class Player : MonoBehaviour
             Destroy(card.GetComponent<SelectableCard>());
             Destroy(card.GetComponent<BoxCollider2D>());
             
-            PlayCard(card);
+            StartCoroutine(PlayCard(card));
         }
         
         GameManager.Instance.SetChangingTurns(false);
         
         yield return new WaitUntil(GameManager.Instance.GetColorHasBeenChanged);
+        
+        
+        
         GameManager.Instance.SetColorHasBeenChanged(false);
         
         GameManager.Instance.ChangeTurn();

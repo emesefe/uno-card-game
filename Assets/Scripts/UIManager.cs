@@ -1,27 +1,43 @@
 using System.Collections;
+using System.Reflection;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     
+    [Header("Main Player")]
+    [SerializeField] private Player mainPlayer;
     [SerializeField] private Button confirmSelectionButton;
 
-    [SerializeField] private Player player;
-    
+    [Header("Total Cards To Draw")]
     [SerializeField] private GameObject totalCardsToDraw;
     [SerializeField] private RectTransform totalCardsToDrawRectTransform;
     [SerializeField] private TextMeshProUGUI totalCardsToDrawText;
     [SerializeField] private CanvasGroup totalCardsCanvasGroup;
+    private float shakeStrength = 20f;
 
+    [Header("Change Color Panel")]
     [SerializeField] private GameObject changeColorPanel;
     [SerializeField] private Button[] changeColorButtons;
     [SerializeField] private TextMeshProUGUI currentColorText;
     
+<<<<<<< HEAD
     [SerializeField] private GameObject winPanel;
+=======
+    [Header("Win Panel")]
+    [SerializeField] private GameObject winPanel;
+    
+    [Header("Uno Panel")]
+    [SerializeField] private GameObject UNOPanel;
+    [SerializeField] private Button UNOButton;
+    [SerializeField] private RectTransform UNOButtonRectTransform;
+    [SerializeField] private int[] UNOPositionLimits;
+>>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
 
     private void Awake()
     {
@@ -40,34 +56,29 @@ public class UIManager : MonoBehaviour
         InitializeChangeColorButtons();
         
         HideWinPanel();
+<<<<<<< HEAD
+=======
+        HideUNOPanel();
+        
+        InitializeUNOButton();
+>>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     }
 
+    #region MAIN PLAYER
     private void InitializeConfirmSelectionButton()
     {
         confirmSelectionButton.onClick.AddListener(() =>
-            StartCoroutine(player.PlaySelectedCards()));
+            StartCoroutine(mainPlayer.PlaySelectedCards()));
         EnableConfirmSelectionButton(false);
     }
     
-    private void InitializeChangeColorButtons()
-    {
-        for (int i = 0; i < changeColorButtons.Length; i++)
-        {
-            CardColor cardColor = (CardColor)i;
-            changeColorButtons[i].onClick.AddListener(() =>
-            {
-                GameManager.Instance.ChangeCurrentColor(cardColor);
-                HideChangeColorPanel();
-                ShowCurrentColorText(cardColor);
-            });
-        }
-    }
-
     public void EnableConfirmSelectionButton(bool enable)
     {
         confirmSelectionButton.interactable = enable;
     }
-
+    #endregion
+    
+    #region TOTAL CARDS TO DRAW
     public void ShowTotalCardsToDraw(float fadeTime = 0)
     {
         totalCardsToDraw.SetActive(true);
@@ -78,7 +89,7 @@ public class UIManager : MonoBehaviour
     {
         if (shakeTime > 0)
         {
-            totalCardsToDrawRectTransform.DOShakeAnchorPos(shakeTime, 20);
+            totalCardsToDrawRectTransform.DOShakeAnchorPos(shakeTime, shakeStrength);
             yield return new WaitForSeconds(shakeTime);
         }
         
@@ -97,7 +108,23 @@ public class UIManager : MonoBehaviour
     {
         totalCardsToDrawText.text = cardsToDraw.ToString();
     }
-
+    #endregion
+    
+    #region CHANGE COLOR PANEL
+    private void InitializeChangeColorButtons()
+    {
+        for (int i = 0; i < changeColorButtons.Length; i++)
+        {
+            CardColor cardColor = (CardColor)i;
+            changeColorButtons[i].onClick.AddListener(() =>
+            {
+                GameManager.Instance.ChangeCurrentColor(cardColor);
+                HideChangeColorPanel();
+                ShowCurrentColorText(cardColor);
+            });
+        }
+    }
+    
     public void ShowChangeColorPanel()
     {
         changeColorPanel.SetActive(true);
@@ -108,6 +135,7 @@ public class UIManager : MonoBehaviour
         changeColorPanel.SetActive(false);
     }
     
+<<<<<<< HEAD
     public void ShowWinPanel()
     {
         winPanel.SetActive(true);
@@ -118,6 +146,8 @@ public class UIManager : MonoBehaviour
         winPanel.SetActive(false);
     }
 
+=======
+>>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     public void ShowCurrentColorText(CardColor color, float fadeTime = 0)
     {
         currentColorText.gameObject.SetActive(true);
@@ -140,4 +170,44 @@ public class UIManager : MonoBehaviour
         Debug.Log("Desactivo");
         StartCoroutine(HideCurrentColorTextCoroutine(fadeTime));
     }
+    
+    #endregion
+    
+    #region WIN PANEL
+    public void ShowWinPanel()
+    {
+        winPanel.SetActive(true);
+    }
+    
+    private void HideWinPanel()
+    {
+        winPanel.SetActive(false);
+    }
+    
+    #endregion
+    
+    #region UNO PANEL
+    private void InitializeUNOButton()
+    {
+        UNOButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.SetUNOButtonHasBeenPressed(true, 0);
+        });
+    }
+    
+    public void ShowUNOPanel()
+    {
+        int randomX = Random.Range(-UNOPositionLimits[0], UNOPositionLimits[0] + 1);
+        int randomY = Random.Range(-UNOPositionLimits[1], UNOPositionLimits[1] + 1);
+        
+        UNOButtonRectTransform.localPosition = new Vector3(randomX, randomY, 0);
+        UNOPanel.SetActive(true);
+    }
+    
+    public void HideUNOPanel()
+    {
+        UNOPanel.SetActive(false);
+    }
+    
+    #endregion
 }
