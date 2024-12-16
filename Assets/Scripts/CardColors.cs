@@ -9,7 +9,8 @@ public enum CardColor
     Yellow,
     Black
 }
-public class CardColors : MonoBehaviour
+
+public static class CardColors
 {
     public static readonly Dictionary<CardColor, Color> CardColorsDictionary = new Dictionary<CardColor, Color>() 
     {

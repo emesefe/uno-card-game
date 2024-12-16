@@ -24,7 +24,7 @@ public class DiscardDeckVisuals : MonoBehaviour
         }
     }
 
-    public void ArrangeLast4PlayedCards(Card card)
+    public void ArrangeLastPlayedCards(Card card)
     {
         AddNewPlayedCard(card);
 
