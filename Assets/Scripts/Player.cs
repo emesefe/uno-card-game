@@ -129,12 +129,12 @@ public class Player : MonoBehaviour
         return hand;
     }
     
-    public bool CheckIfHasWon()
+    private bool CheckIfHasWon()
     {
         return hand.Count <= 0;
     }
     
-    public bool CheckUNO()
+    private bool CheckUNO()
     {
         return hand.Count == 1;
     }

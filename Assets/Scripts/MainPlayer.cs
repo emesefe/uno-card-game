@@ -37,7 +37,7 @@ public class MainPlayer : MonoBehaviour
         AddCard(card);
     }
 
-    public void AddCard(Card card)
+    private void AddCard(Card card)
     {
         SetCardAsSelectableCard(card);
         card.ChangeSize(visualCardWidth);

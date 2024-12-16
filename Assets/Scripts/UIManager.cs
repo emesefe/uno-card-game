@@ -150,7 +150,6 @@ public class UIManager : MonoBehaviour
         Debug.Log("Desactivo");
         StartCoroutine(HideCurrentColorTextCoroutine(fadeTime));
     }
-    
     #endregion
     
     #region WIN PANEL
@@ -163,7 +162,6 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(false);
     }
-    
     #endregion
     
     #region UNO PANEL
@@ -188,6 +186,5 @@ public class UIManager : MonoBehaviour
     {
         UNOPanel.SetActive(false);
     }
-    
     #endregion
 }

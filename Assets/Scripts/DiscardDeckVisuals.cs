@@ -42,7 +42,8 @@ public class DiscardDeckVisuals : MonoBehaviour
     {
         if (lastDiscardedCards.Count >= totalDiscardedCardsToShow)
         {
-            lastDiscardedCards.RemoveAt(0); // We delete the first card to always have less or equal than 4
+            // We delete the first card to always have less or equal than totalDiscardedCardsToShow
+            lastDiscardedCards.RemoveAt(0); 
         }
         
         lastDiscardedCards.Add(card);

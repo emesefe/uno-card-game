@@ -69,6 +69,7 @@ public class SelectableCard : MonoBehaviour
         }
     }
     
+    
     public void SetOriginalPosition(Vector3 position)
     {
         originalPosition = position;
@@ -95,6 +96,7 @@ public class SelectableCard : MonoBehaviour
         _card = card;
     }
 
+    
     public void UpdateCanSelect(bool isSelectionAvailable)
     {
         canSelect = isSelectionAvailable;

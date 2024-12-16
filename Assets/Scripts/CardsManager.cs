@@ -26,8 +26,7 @@ public class CardsManager : MonoBehaviour
 
         Instance = this;
     }
-
-    // TODO: When finished with testing, turn this function back to private
+    
     public Card CreateCard(SOCard soCard, CardColor color, int idx)
     {
         GameObject newCard = Instantiate(cardPrefab);
@@ -76,12 +75,11 @@ public class CardsManager : MonoBehaviour
 
     public void ShuffleDrawDeck()
     {
-        Card auxCard = null;
         for (int i = 0; i < drawDeck.Count; i++)
         {
             int randomIdx = Random.Range(i, drawDeck.Count);
             
-            auxCard = drawDeck[i];
+            Card auxCard = drawDeck[i];
             drawDeck[i] = drawDeck[randomIdx];
             drawDeck[randomIdx] = auxCard;
 
@@ -119,19 +117,6 @@ public class CardsManager : MonoBehaviour
     public Card GetLastPlayedCard()
     {
         return discardDeck[discardDeck.Count - 1];
-    }
-
-    public static bool AreTwoCardsEqual(Card card1, Card card2)
-    {
-        if (card1.GetColor() != card2.GetColor()) return false;
-
-        if (card1.GetCardType() != card2.GetCardType()) return false;
-       
-        if (card1.GetCardType() != CardType.Number) return true;
-
-        if (card1.GetCardDigit() != card2.GetCardDigit()) return false;
-
-        return true;
     }
     
     #endregion
