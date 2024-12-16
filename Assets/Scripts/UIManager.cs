@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     
     [Header("Main Player")]
-    [SerializeField] private Player mainPlayer;
+    [SerializeField] private MainPlayer mainPlayer;
     [SerializeField] private Button confirmSelectionButton;
 
     [Header("Total Cards To Draw")]

@@ -2150,8 +2150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91095617c43f848f3ad96a3cba4ac068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainPlayer: {fileID: 1828412313}
   confirmSelectionButton: {fileID: 51470852}
-  mainPlayer: {fileID: 1828412310}
   totalCardsToDraw: {fileID: 1824561620}
   totalCardsToDrawRectTransform: {fileID: 1824561621}
   totalCardsToDrawText: {fileID: 1695111469}
@@ -2295,8 +2295,6 @@ MonoBehaviour:
   hand: []
   totalInitialCards: 7
   handTransform: {fileID: 967443796}
-  handHorizontalLimits: []
-  visualCardWidth: 2
   isMainPlayer: 0
   overrideInitialCards: 0
   initialCardsSelector: {fileID: 1375616334}
@@ -2808,6 +2806,7 @@ GameObject:
   - component: {fileID: 1828412311}
   - component: {fileID: 1828412310}
   - component: {fileID: 1828412312}
+  - component: {fileID: 1828412313}
   m_Layer: 0
   m_Name: Main Player
   m_TagString: Untagged
@@ -2830,10 +2829,6 @@ MonoBehaviour:
   hand: []
   totalInitialCards: 7
   handTransform: {fileID: 1287111289}
-  handHorizontalLimits:
-  - -20
-  - 20
-  visualCardWidth: 4
   isMainPlayer: 1
   overrideInitialCards: 1
   initialCardsSelector: {fileID: 1828412312}
@@ -2873,6 +2868,23 @@ MonoBehaviour:
   - soCard: {fileID: 11400000, guid: f68cbcbe184f843b9b08408eb13d8a84, type: 2}
     color: 1
     total: 1
+--- !u!114 &1828412313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828412309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1535b50bc5782443a84a6b4a2c0c32d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1828412310}
+  handHorizontalLimits:
+  - -20
+  - 20
+  visualCardWidth: 4
 --- !u!1 &1892682366
 GameObject:
   m_ObjectHideFlags: 0

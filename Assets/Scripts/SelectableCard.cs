@@ -4,6 +4,7 @@ using DG.Tweening;
 [RequireComponent(typeof(BoxCollider2D))]
 public class SelectableCard : MonoBehaviour
 {
+    private MainPlayer _mainPlayer;
     private Player _player;
     private Card _card;
     
@@ -26,10 +27,11 @@ public class SelectableCard : MonoBehaviour
         
         if (_player.CanPlayCard(_card) && !selectedCard)
         {
-            if (_player.GetTotalSelectedCards() <= 0 || Card.AreTwoCardsEqual(_card, _player.GetSelectedCard()))
+            if (_mainPlayer.GetTotalSelectedCards() <= 0 || 
+                Card.AreTwoCardsEqual(_card, _mainPlayer.GetSelectedCard()))
             {
                 selectedCard = true;
-                _player.AddSelectedCard(_card);
+                _mainPlayer.AddSelectedCard(_card);
                 UIManager.Instance.EnableConfirmSelectionButton(true);
             }
         } 
@@ -37,9 +39,9 @@ public class SelectableCard : MonoBehaviour
         else if (selectedCard)
         {
             selectedCard = false;
-            _player.RemoveSelectedCard(_card);
+            _mainPlayer.RemoveSelectedCard(_card);
 
-            if (_player.GetTotalSelectedCards() <= 0)
+            if (_mainPlayer.GetTotalSelectedCards() <= 0)
             {
                 UIManager.Instance.EnableConfirmSelectionButton(false);
             }
@@ -82,8 +84,9 @@ public class SelectableCard : MonoBehaviour
         originalIndex = index;
     }
 
-    public void SetPlayer(Player player)
+    public void SetMainPlayer(MainPlayer mainPlayer, Player player)
     {
+        _mainPlayer = mainPlayer;
         _player = player;
     }
 
