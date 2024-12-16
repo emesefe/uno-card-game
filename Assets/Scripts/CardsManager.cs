@@ -120,7 +120,6 @@ public class CardsManager : MonoBehaviour
     {
         return discardDeck[discardDeck.Count - 1];
     }
-<<<<<<< HEAD
 
     public static bool AreTwoCardsEqual(Card card1, Card card2)
     {
@@ -134,8 +133,6 @@ public class CardsManager : MonoBehaviour
 
         return true;
     }
-=======
     
     #endregion
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
 }

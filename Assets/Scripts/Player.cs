@@ -173,14 +173,6 @@ public class Player : MonoBehaviour
     }
     
     public bool CheckIfHasWon()
-<<<<<<< HEAD
-    {
-        return hand.Count <= 0;
-    }
-    
-    public void PlayCard(Card card)
-=======
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     {
         return hand.Count <= 0;
     }

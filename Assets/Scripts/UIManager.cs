@@ -26,9 +26,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button[] changeColorButtons;
     [SerializeField] private TextMeshProUGUI currentColorText;
     
-<<<<<<< HEAD
-    [SerializeField] private GameObject winPanel;
-=======
     [Header("Win Panel")]
     [SerializeField] private GameObject winPanel;
     
@@ -37,7 +34,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button UNOButton;
     [SerializeField] private RectTransform UNOButtonRectTransform;
     [SerializeField] private int[] UNOPositionLimits;
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
+
 
     private void Awake()
     {
@@ -56,12 +53,10 @@ public class UIManager : MonoBehaviour
         InitializeChangeColorButtons();
         
         HideWinPanel();
-<<<<<<< HEAD
-=======
+        
         HideUNOPanel();
         
         InitializeUNOButton();
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     }
 
     #region MAIN PLAYER
@@ -135,19 +130,6 @@ public class UIManager : MonoBehaviour
         changeColorPanel.SetActive(false);
     }
     
-<<<<<<< HEAD
-    public void ShowWinPanel()
-    {
-        winPanel.SetActive(true);
-    }
-
-    private void HideWinPanel()
-    {
-        winPanel.SetActive(false);
-    }
-
-=======
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
     public void ShowCurrentColorText(CardColor color, float fadeTime = 0)
     {
         currentColorText.gameObject.SetActive(true);

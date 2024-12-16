@@ -90,16 +90,13 @@ public class GameManager : MonoBehaviour
     {
         int currentTurnIdx = (int)currentTurn; 
         
-<<<<<<< HEAD
         bool gameOver = CheckIfCurrentPlayerHasWon(currentTurnIdx);
         if (gameOver)
         {
             UIManager.Instance.ShowWinPanel();
             return;
         }
-    
-=======
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
+        
         if (turnOrderClockwise)
         {
             currentTurnIdx += turnsToChange;
@@ -146,15 +143,12 @@ public class GameManager : MonoBehaviour
         Player currentPlayer = players[currentTurnIdx];
         return currentPlayer.CheckIfHasWon();
     }
-<<<<<<< HEAD
-=======
     
     private bool CheckIfCurrentPlayerHasUNO(int currentTurnIdx)
     {
         Player currentPlayer = players[currentTurnIdx];
         return currentPlayer.CheckUNO();
     }
->>>>>>> 1e2539bb3c8005e0f39f93ef8f13d636c63388a6
 
     private IEnumerator CheckIfCanPlayCard(Player currentPlayer)
     {
